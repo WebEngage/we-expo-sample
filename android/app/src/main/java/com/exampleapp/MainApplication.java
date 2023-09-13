@@ -20,6 +20,9 @@ import expo.modules.ReactNativeHostWrapper;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+import com.webengage.sdk.android.WebEngageConfig;
+import com.webengage.sdk.android.WebEngageActivityLifeCycleCallbacks;
+
 public class MainApplication extends Application implements ReactApplication {
   private final ReactNativeHost mReactNativeHost = new ReactNativeHostWrapper(
     this,
@@ -65,6 +68,13 @@ public class MainApplication extends Application implements ReactApplication {
 
     initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
     ApplicationLifecycleDispatcher.onApplicationCreate(this);
+    WebEngageConfig webEngageConfig = new WebEngageConfig.Builder()
+            .setWebEngageKey("YOUR_LICENSE_CODE")
+            .setDebugMode(true) // only in development mode
+            .build();
+    registerActivityLifecycleCallbacks(new WebEngageActivityLifeCycleCallbacks(this, webEngageConfig));
+
+
   }
 
   @Override
