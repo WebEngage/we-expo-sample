@@ -1,3 +1,9 @@
+## Steps to Run the Sample App
+
+1. **Clone the Sample App**: Clone the repository to your local machine.
+2. **Install Dependencies**: Navigate to the project directory and install the necessary dependencies using `npm install` or `yarn`.
+3. **Start the Development Server**: Run the command `npx expo start` to start the Expo development server. You can then run the app on an Android or iOS device.
+
 ## Steps to Integrate WebEngage
 
 1. Run `expo prebuild`:
