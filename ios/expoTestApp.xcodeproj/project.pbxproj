@@ -299,10 +299,14 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-expoTestApp/Pods-expoTestApp-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/WebEngage/Core/WebEngage.framework/WebEngage",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/WebEngage/Location/WELocation.framework/WELocation",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WebEngage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/WELocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
