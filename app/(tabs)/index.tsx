@@ -1,70 +1,119 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React, { useState } from "react";
+import {
+  StatusBar,
+  Image,
+  TextInput,
+  Button,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import WebEngage from "react-native-webengage";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+export default function App() {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [username, setUsername] = useState("");
+  const [eventName, setEventName] = useState("");
+  const webengage = new WebEngage();
 
-export default function HomeScreen() {
+  const handleLogin = () => {
+    if (username.trim() !== "") {
+      webengage.user.login(username);
+      setIsLoggedIn(true);
+    }
+  };
+
+  const handleLogout = () => {
+    webengage.user.logout();
+    setIsLoggedIn(false);
+  };
+
+  const handleTrackEvent = () => {
+    if (eventName.trim() !== "") {
+      webengage.track(eventName);
+    }
+  };
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({ ios: 'cmd + d', android: 'cmd + m' })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          Tap the Explore tab to learn more about what's included in this starter app.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          When you're ready, run{' '}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <View style={styles.container}>
+      <Text style={styles.title}>Welcome To WebEngage!</Text>
+      {isLoggedIn ? (
+        <View style={styles.loggedInContainer}>
+          <Text style={styles.loggedInText}>
+            You are logged in as {username}.
+          </Text>
+          <Button title="Logout" onPress={handleLogout} />
+        </View>
+      ) : (
+        <View style={styles.loginContainer}>
+          <Text style={styles.loginText}>Please enter your username:</Text>
+          <TextInput
+            style={styles.input}
+            placeholder="Username"
+            onChangeText={(text) => setUsername(text)}
+            value={username}
+          />
+          <Button title="Login" onPress={handleLogin} />
+        </View>
+      )}
+
+      <TextInput
+        style={styles.input}
+        placeholder="Enter Event Name"
+        onChangeText={(text) => setEventName(text)}
+        value={eventName}
+      />
+      <Button title="Track Event" onPress={handleTrackEvent} />
+      <StatusBar style="auto" />
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    backgroundColor: "#f0f0f0",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 20,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
+  title: {
+    fontSize: 24,
+    fontWeight: "bold",
+    marginBottom: 20,
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  loggedInContainer: {
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  loggedInText: {
+    fontSize: 18,
+    color: "green",
+    marginBottom: 10,
+  },
+  loginContainer: {
+    alignItems: "center",
+    marginBottom: 20,
+  },
+  loginText: {
+    fontSize: 18,
+    color: "blue",
+    marginBottom: 10,
+  },
+  image: {
+    width: 400,
+    height: 200,
+    resizeMode: "contain",
+    marginTop: 20,
+  },
+  input: {
+    height: 40,
+    width: 300,
+    borderColor: "gray",
+    borderWidth: 1,
+    marginTop: 10,
+    marginBottom: 10,
+    paddingLeft: 10,
+    fontSize: 16,
   },
 });
