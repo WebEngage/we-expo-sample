@@ -1,8 +1,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { requestPushPermissionAndOptIn } from '@/analytics/pushPermission';
+import { HomeInlineBanner } from '@/components/HomeInlineBanner';
 import { ProductGrid } from '@/components/ProductGrid';
 import { PromoBanner } from '@/components/PromoBanner';
 import { Button, SectionTitle } from '@/components/ui';
@@ -14,6 +16,11 @@ export default function Home() {
   const router = useRouter();
   const { user } = useApp();
   const featured = PRODUCTS.slice(0, 6);
+  useEffect(() => {
+    // Android 13+: ask for notification permission once, on the launch landing screen.
+    requestPushPermissionAndOptIn();
+  }, []);
+
   const trending = [...PRODUCTS].sort((a, b) => b.reviews - a.reviews).slice(0, 4);
 
   return (
@@ -49,6 +56,7 @@ export default function Home() {
       </ScrollView>
 
       <PromoBanner />
+      <HomeInlineBanner />
 
       <SectionTitle action={{ label: 'See all', onPress: () => router.push({ pathname: '/category/[slug]', params: { slug: 'all' } }) }}>
         Featured

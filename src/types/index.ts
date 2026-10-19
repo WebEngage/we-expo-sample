@@ -102,13 +102,3 @@ export interface OptIns {
   sms: boolean;
   whatsapp: boolean;
 }
-
-export interface InboxMessage {
-  id: string;
-  title: string;
-  body: string;
-  createdAt: string;
-  read: boolean;
-  /** In-app route opened when the message is tapped. */
-  link?: string;
-}

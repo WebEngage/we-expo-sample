@@ -1,6 +1,9 @@
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import WebEngageManager from '@/analytics/WebEngageManager';
+import { INLINE } from '@/analytics/inlinePlacements';
 import { CustomDataEditor, newRow, resolveCustomData } from '@/components/CustomDataEditor';
 import { Button, Chip, Field, SectionTitle, card } from '@/components/ui';
 import { colors } from '@/constants/theme';
@@ -21,6 +24,7 @@ const stringify = (data: Payload) => JSON.stringify(data, null, 2);
 
 export default function TestLab() {
   const { showToast } = useApp();
+  const router = useRouter();
   const [mode, setMode] = useState<Mode>('event');
   const [log, setLog] = useState<LogEntry[]>([]);
 
@@ -45,6 +49,7 @@ export default function TestLab() {
     if (!eventName.trim()) return showToast('Enter an event name');
     const data = resolveCustomData(eventData);
     if (!data) return;
+    WebEngageManager.trackEvent(eventName.trim(), data);
     add('Event', eventName.trim(), data);
   };
 
@@ -52,6 +57,7 @@ export default function TestLab() {
     if (!screenName.trim()) return showToast('Enter a screen name');
     const data = resolveCustomData(screenData);
     if (!data) return;
+    WebEngageManager.trackScreen(screenName.trim(), data);
     add('Screen', screenName.trim(), data);
   };
 
@@ -64,6 +70,12 @@ export default function TestLab() {
     if (email.trim()) standard.email = email.trim();
     if (phone.trim()) standard.phone = phone.trim();
     if (Object.keys(standard).length === 0 && Object.keys(data).length === 0) return showToast('Nothing to set');
+    // Test tool: values go to WebEngage exactly as the tester typed them.
+    if (standard.firstName) WebEngageManager.setFirstName(String(standard.firstName));
+    if (standard.lastName) WebEngageManager.setLastName(String(standard.lastName));
+    if (standard.email) WebEngageManager.setEmail(String(standard.email));
+    if (standard.phone) WebEngageManager.setPhone(String(standard.phone));
+    for (const [name, value] of Object.entries(data)) WebEngageManager.setAttribute(name, value);
     add('User attributes', 'setUser', { ...standard, ...data });
   };
 
@@ -105,6 +117,41 @@ export default function TestLab() {
           <Button title="Set attributes" icon="person-add-outline" onPress={setUser} testID="lab-set-user" />
         </View>
       )}
+
+      <SectionTitle>In-Line placements</SectionTitle>
+      <View style={styles.form}>
+        <Text style={styles.intro}>
+          Placements defined on the dashboard. The Home banner is on the Home tab; the others each have their own screen.
+        </Text>
+        <Button
+          title={`Home · ${INLINE.home.label} (${INLINE.home.androidPropertyId})`}
+          icon="home-outline"
+          variant="secondary"
+          onPress={() => router.navigate('/' as never)}
+          testID="lab-inline-home"
+        />
+        <Button
+          title={`Screen 1 · ${INLINE.screen1.label} (${INLINE.screen1.androidPropertyId})`}
+          icon="text-outline"
+          variant="secondary"
+          onPress={() => router.push('/inline/screen1' as never)}
+          testID="lab-inline-screen1"
+        />
+        <Button
+          title={`Screen 3 · ${INLINE.screen3.label} (${INLINE.screen3.androidPropertyId})`}
+          icon="albums-outline"
+          variant="secondary"
+          onPress={() => router.push('/inline/screen3' as never)}
+          testID="lab-inline-screen3"
+        />
+        <Button
+          title={`Screen 4 · ${INLINE.screen4.label} (${INLINE.screen4.androidPropertyId})`}
+          icon="warning-outline"
+          variant="secondary"
+          onPress={() => router.push('/inline/screen4' as never)}
+          testID="lab-inline-screen4"
+        />
+      </View>
 
       <SectionTitle action={log.length ? { label: 'Clear', onPress: () => setLog([]) } : undefined}>Log</SectionTitle>
       {log.length === 0 ? (

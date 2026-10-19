@@ -1,12 +1,13 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
+import WebEngageManager from '@/analytics/WebEngageManager';
+import { CURRENCY, orderProps, productProps, syncUser, track } from '@/analytics/tracking';
 import { COUPONS, getProduct } from '@/data/products';
 import type {
   Account,
   Address,
   CartItem,
-  InboxMessage,
   OptIns,
   Order,
   PaymentMethod,
@@ -16,7 +17,8 @@ import type {
 } from '@/types';
 import { uid } from '@/utils/format';
 
-const STORAGE_KEY = 'weshop:state:v1';
+// v2: the demo account is now `sn_ios` and the stored static inbox is gone, so old saved state is not reused.
+const STORAGE_KEY = 'weshop:state:v2';
 
 type Session = { type: 'user'; userId: string } | { type: 'guest'; guestId: string } | null;
 
@@ -29,14 +31,11 @@ interface Persisted {
   orders: Order[];
   addresses: Address[];
   optIns: OptIns;
-  inbox: InboxMessage[];
   recentSearches: string[];
 }
 
-const minutesAgo = (m: number) => new Date(Date.now() - m * 60000).toISOString();
-
 const DEMO_ACCOUNT: Account = {
-  id: 'u_demo',
+  id: 'sn_ios',
   isGuest: false,
   firstName: 'Demo',
   lastName: 'Shopper',
@@ -49,40 +48,6 @@ const DEMO_ACCOUNT: Account = {
   password: 'demo1234',
 };
 
-const seedInbox = (): InboxMessage[] => [
-  {
-    id: 'm1',
-    title: 'Welcome to WE Shop 🎉',
-    body: 'Use code WELCOME10 to get 10% off your first order.',
-    createdAt: minutesAgo(5),
-    read: false,
-    link: '/category/all',
-  },
-  {
-    id: 'm2',
-    title: 'Free shipping on orders over $100',
-    body: 'Fill your cart past $100 and we cover the delivery.',
-    createdAt: minutesAgo(180),
-    read: false,
-    link: '/cart',
-  },
-  {
-    id: 'm3',
-    title: 'New arrivals in Footwear',
-    body: 'Fresh sneakers and trail runners just landed.',
-    createdAt: minutesAgo(60 * 26),
-    read: true,
-    link: '/category/footwear',
-  },
-  {
-    id: 'm4',
-    title: 'Rate your recent purchase',
-    body: 'Tell us how we did. It takes less than a minute.',
-    createdAt: minutesAgo(60 * 70),
-    read: true,
-  },
-];
-
 const initialState = (): Persisted => ({
   accounts: [DEMO_ACCOUNT],
   session: null,
@@ -92,7 +57,6 @@ const initialState = (): Persisted => ({
   orders: [],
   addresses: [],
   optIns: { push: true, email: true, sms: false, whatsapp: false },
-  inbox: seedInbox(),
   recentSearches: [],
 });
 
@@ -168,11 +132,6 @@ interface AppContextValue {
   optIns: OptIns;
   setOptIn: (channel: keyof OptIns, value: boolean) => void;
 
-  inbox: InboxMessage[];
-  unreadCount: number;
-  markRead: (id: string) => void;
-  markAllRead: () => void;
-
   recentSearches: string[];
   addRecentSearch: (q: string) => void;
   clearRecentSearches: () => void;
@@ -193,7 +152,20 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     (async () => {
       try {
         const raw = await AsyncStorage.getItem(STORAGE_KEY);
-        if (raw) setState({ ...initialState(), ...JSON.parse(raw) });
+        if (raw) {
+          const restored: Persisted = { ...initialState(), ...JSON.parse(raw) };
+          setState(restored);
+          // A restored session bypasses the login screen, so identify the user here.
+          const session = restored.session;
+          if (session?.type === 'user') {
+            const acc = restored.accounts.find((a) => a.id === session.userId);
+            if (acc) {
+              const { password: _password, ...profile } = acc;
+              WebEngageManager.login(acc.id);
+              syncUser(profile, acc.customAttributes);
+            }
+          }
+        }
       } catch {
         // fall back to the initial state
       }
@@ -239,11 +211,14 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     return rest;
   }, [state.session, state.accounts]);
 
-  const login: AppContextValue['login'] = (email, password) => {
+  const login: AppContextValue['login'] = (email, password, extra) => {
     const acc = state.accounts.find((a) => a.email.toLowerCase() === email.trim().toLowerCase());
     if (!acc) return { ok: false, message: 'No account found for this email. Please sign up.' };
     if (acc.password !== password) return { ok: false, message: 'Incorrect password.' };
     patch({ session: { type: 'user', userId: acc.id } });
+    const { password: _password, ...profile } = acc;
+    WebEngageManager.login(acc.id);
+    syncUser(profile, { ...acc.customAttributes, ...extra });
     return { ok: true };
   };
 
@@ -265,20 +240,36 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       password: input.password,
     };
     patch((s) => ({ accounts: [...s.accounts, account], session: { type: 'user', userId: account.id } }));
+    const { password: _password, ...profile } = account;
+    WebEngageManager.login(account.id);
+    syncUser(profile, extra);
+    track('Signup Completed', { Method: 'Email' }, extra);
     return { ok: true };
   };
 
-  const continueAsGuest: AppContextValue['continueAsGuest'] = () => {
+  const continueAsGuest: AppContextValue['continueAsGuest'] = (extra) => {
     patch({ session: { type: 'guest', guestId: `guest_${uid()}` } });
+    track('Guest Session Started', {}, extra);
   };
 
   const logout = () => {
+    // A guest was never identified, so there is nothing to log out in WebEngage.
+    if (state.session?.type === 'user') WebEngageManager.logout();
     patch({ session: null, cart: [], coupon: null });
   };
 
   const updateProfile: AppContextValue['updateProfile'] = (p, customAttributes) => {
     if (state.session?.type !== 'user') return;
     const userId = state.session.userId;
+    const before = state.accounts.find((a) => a.id === userId);
+    if (before) {
+      const { password: _password, ...current } = before;
+      const next = { ...current, ...p };
+      const changed = (Object.keys(p) as (keyof typeof p)[]).filter((k) => p[k] !== current[k]);
+      syncUser(next, customAttributes);
+      if (current.city && !next.city) WebEngageManager.deleteAttribute('City');
+      track('Profile Updated', { 'Updated Fields': changed.map(String) }, customAttributes);
+    }
     patch((s) => ({
       accounts: s.accounts.map((a) =>
         a.id === userId
@@ -300,15 +291,33 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
         cart: [...s.cart, { key, productId: product.id, qty, size: opts.size, color: opts.color, extra: opts.extra }],
       };
     });
+    track(
+      'Added To Cart',
+      { ...productProps(product), Quantity: qty, ...(opts.size ? { Size: opts.size } : {}), ...(opts.color ? { Color: opts.color } : {}) },
+      opts.extra,
+    );
+  };
+
+  const trackRemoved = (item: CartItem | undefined) => {
+    const product = item && getProduct(item.productId);
+    if (!item || !product) return;
+    track('Removed From Cart', {
+      ...productProps(product),
+      Quantity: item.qty,
+      ...(item.size ? { Size: item.size } : {}),
+      ...(item.color ? { Color: item.color } : {}),
+    });
   };
 
   const updateQty: AppContextValue['updateQty'] = (key, qty) => {
+    if (qty <= 0) trackRemoved(state.cart.find((i) => i.key === key));
     patch((s) => ({
       cart: qty <= 0 ? s.cart.filter((i) => i.key !== key) : s.cart.map((i) => (i.key === key ? { ...i, qty } : i)),
     }));
   };
 
   const removeFromCart: AppContextValue['removeFromCart'] = (key) => {
+    trackRemoved(state.cart.find((i) => i.key === key));
     patch((s) => ({ cart: s.cart.filter((i) => i.key !== key) }));
   };
 
@@ -321,14 +330,20 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       return { ok: false, message: `Add $${(def.minSubtotal - subtotal).toFixed(2)} more to use ${c}.` };
     }
     patch({ coupon: c });
+    track('Coupon Applied', { 'Coupon Code': c, 'Cart Value': subtotal, Currency: CURRENCY });
     return { ok: true, message: `${c} applied (${def.label}).` };
   };
 
-  const removeCoupon = () => patch({ coupon: null });
+  const removeCoupon = () => {
+    if (state.coupon) track('Coupon Removed', { 'Coupon Code': state.coupon });
+    patch({ coupon: null });
+  };
 
-  const toggleWishlist: AppContextValue['toggleWishlist'] = (productId) => {
+  const toggleWishlist: AppContextValue['toggleWishlist'] = (productId, extra) => {
     const has = state.wishlist.includes(productId);
     patch((s) => ({ wishlist: has ? s.wishlist.filter((id) => id !== productId) : [...s.wishlist, productId] }));
+    const product = getProduct(productId);
+    if (product) track(has ? 'Removed From Wishlist' : 'Added To Wishlist', productProps(product), extra);
     return !has;
   };
 
@@ -349,14 +364,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       status: 'Placed',
       extra,
     };
-    const confirmation: InboxMessage = {
-      id: `m_${uid()}`,
-      title: `Order ${order.id} placed`,
-      body: `We've received your order of ${order.items.length} item(s). We'll let you know when it ships.`,
-      createdAt: order.createdAt,
-      read: false,
-    };
-    patch((s) => ({ orders: [order, ...s.orders], cart: [], coupon: null, inbox: [confirmation, ...s.inbox] }));
+    patch((s) => ({ orders: [order, ...s.orders], cart: [], coupon: null }));
+    track('Order Placed', orderProps(order), extra);
     return order;
   };
 
@@ -369,14 +378,10 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   };
 
   const setOptIn: AppContextValue['setOptIn'] = (channel, value) => {
+    WebEngageManager.instance.user.setOptIn(channel, value);
+    track('Notification Preference Changed', { Channel: channel, Enabled: value });
     patch((s) => ({ optIns: { ...s.optIns, [channel]: value } }));
   };
-
-  const markRead: AppContextValue['markRead'] = (id) => {
-    patch((s) => ({ inbox: s.inbox.map((m) => (m.id === id ? { ...m, read: true } : m)) }));
-  };
-
-  const markAllRead = () => patch((s) => ({ inbox: s.inbox.map((m) => ({ ...m, read: true })) }));
 
   const addRecentSearch: AppContextValue['addRecentSearch'] = (q) => {
     const term = q.trim();
@@ -415,10 +420,6 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     removeAddress,
     optIns: state.optIns,
     setOptIn,
-    inbox: state.inbox,
-    unreadCount: state.inbox.filter((m) => !m.read).length,
-    markRead,
-    markAllRead,
     recentSearches: state.recentSearches,
     addRecentSearch,
     clearRecentSearches,

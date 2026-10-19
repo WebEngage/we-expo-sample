@@ -3,6 +3,7 @@ import { useRouter } from 'expo-router';
 import React from 'react';
 import { Alert, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { resetInboxCount, useInboxCount } from '@/analytics/inboxCount';
 import { Button, card } from '@/components/ui';
 import { colors } from '@/constants/theme';
 import { useApp } from '@/context/AppContext';
@@ -11,7 +12,8 @@ type IconName = keyof typeof Ionicons.glyphMap;
 
 export default function Account() {
   const router = useRouter();
-  const { user, isGuest, logout, orders, wishlist, unreadCount } = useApp();
+  const { user, isGuest, logout, orders, wishlist } = useApp();
+  const inboxCount = useInboxCount();
 
   const initials = ((user?.firstName?.[0] ?? '') + (user?.lastName?.[0] ?? '')).toUpperCase() || 'G';
 
@@ -20,7 +22,7 @@ export default function Account() {
     { icon: 'receipt-outline', label: 'My orders', detail: `${orders.length}`, href: '/orders', testID: 'account-orders' },
     { icon: 'heart-outline', label: 'Wishlist', detail: `${wishlist.length}`, href: '/wishlist', testID: 'account-wishlist' },
     { icon: 'location-outline', label: 'Saved addresses', href: '/addresses', testID: 'account-addresses' },
-    { icon: 'notifications-outline', label: 'Notifications', detail: unreadCount ? `${unreadCount} new` : undefined, href: '/inbox', testID: 'account-inbox' },
+    { icon: 'notifications-outline', label: 'Notifications', detail: inboxCount !== '0' ? `${inboxCount} new` : undefined, href: '/inbox', testID: 'account-inbox' },
     { icon: 'options-outline', label: 'Notification settings', href: '/notification-settings', testID: 'account-notification-settings' },
   ];
 
@@ -58,7 +60,10 @@ export default function Account() {
             <Pressable
               key={item.label}
               style={[styles.item, idx < arr.length - 1 && styles.itemBorder]}
-              onPress={() => router.push(item.href as never)}
+              onPress={() => {
+                if (item.href === '/inbox') resetInboxCount(); // inbox-entry tap, before navigating
+                router.push(item.href as never);
+              }}
               testID={item.testID}>
               <Ionicons name={item.icon} size={22} color={colors.primary} />
               <Text style={styles.itemLabel}>{item.label}</Text>

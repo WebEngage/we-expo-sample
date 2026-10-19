@@ -2,6 +2,7 @@ import { Ionicons } from '@expo/vector-icons';
 import React, { useMemo, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 
+import { track } from '@/analytics/tracking';
 import { CustomDataEditor, resolveCustomData } from '@/components/CustomDataEditor';
 import { ProductGrid } from '@/components/ProductGrid';
 import { Chip, EmptyState, SectionTitle } from '@/components/ui';
@@ -33,6 +34,7 @@ export default function Search() {
     setInput(q);
     setQuery(q.trim());
     addRecentSearch(q);
+    if (q.trim()) track('Product Searched', { Query: q.trim(), Category: category, Sort: sort }, extra);
   };
 
   const results = useMemo(() => {

@@ -4,6 +4,7 @@ import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { ScrollView, Share, StyleSheet, Text, View } from 'react-native';
 
+import { productProps, track } from '@/analytics/tracking';
 import { CustomDataEditor, resolveCustomData } from '@/components/CustomDataEditor';
 import { Button, Chip, EmptyState, QuantityStepper } from '@/components/ui';
 import { colors } from '@/constants/theme';
@@ -59,6 +60,7 @@ export default function ProductDetails() {
   const onShare = async () => {
     const extra = resolveCustomData(customData);
     if (!extra) return;
+    track('Product Shared', productProps(product), extra);
     try {
       await Share.share({ message: `Check out ${product.name} on WE Shop for ${money(product.price)}` });
     } catch {

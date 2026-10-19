@@ -3,6 +3,7 @@ import { Tabs, useRouter } from 'expo-router';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { resetInboxCount, useInboxCount } from '@/analytics/inboxCount';
 import { colors } from '@/constants/theme';
 import { useApp } from '@/context/AppContext';
 
@@ -15,14 +16,21 @@ const tabIcon = (name: IconName, focused: IconName) =>
 
 function InboxButton() {
   const router = useRouter();
-  const { unreadCount } = useApp();
+  const weCount = useInboxCount();
   return (
-    <Pressable onPress={() => router.push('/inbox')} style={styles.bell} hitSlop={8} testID="home-inbox-button">
+    <Pressable
+      onPress={() => {
+        resetInboxCount(); // on the entry tap itself, before navigating
+        router.push('/inbox');
+      }}
+      style={styles.bell}
+      hitSlop={8}
+      testID="home-inbox-button">
       <Ionicons name="notifications-outline" size={24} color={colors.text} />
-      {unreadCount > 0 && (
+      {weCount !== '0' && (
         <View style={styles.badge}>
-          <Text style={styles.badgeText} testID="home-inbox-badge">
-            {unreadCount}
+          <Text style={styles.badgeText} testID="home-inbox-we-badge">
+            {weCount}
           </Text>
         </View>
       )}
