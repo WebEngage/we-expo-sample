@@ -1,0 +1,23 @@
+17:23:38.234  Activity start: com.webengage.reactSample.MainActivity
+17:23:38.234 Processing event: we_wk_activity_start, data: {screen_title=WE Shop, screen_path=com.webengage.reactSample.MainActivity}
+17:23:38.349 Processing event: visitor_session_close
+17:23:38.366 Session Referrer(Landing Page) extracted: 
+17:23:38.368 Session Referrer(Landing Page) extracted: 
+17:23:38.368 Processing event: visitor_new_session, system-data: {session_type=online}, event-data: {sdk_meta=rn_expo:0.0.3;rn:2.1.0}
+17:23:39.683 com.webengage.sdk.android.x4 Total click or hide or close already happen, hence returning false 1qa0li0
+17:23:39.683 evaluated campaigns: [] with chain: [sessionRuleCode, pageRuleCode]
+17:23:39.683 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+17:23:39.735 com.google.android.gms.ads.identifier.AdvertisingIdClient or Google play-services is missing
+17:23:39.746 com.webengage.sdk.android.x4 Total click or hide or close already happen, hence returning false 1qa0li0
+17:23:39.747 evaluated campaigns: [] with chain: [sessionRuleCode, pageRuleCode]
+17:23:39.747 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+17:23:40.044 Events successfully Logged to server, scheduling next sync
+17:23:40.606 Event queued (no listeners): onAnonymousIdChanged | pending=1
+17:23:42.071 Processing event: user_logged_in
+17:23:42.075 Processing event: user_update, data: {email=demo@weshop.com}
+17:23:42.077 Processing event: user_update, data: {City=Mumbai}
+17:23:42.310 INVALID OPERATION: User: u_demo is Already Logged-in
+17:23:42.314 User profile is up-to-date, hence not updating
+17:23:42.314 User profile is up-to-date, hence not updating
+17:23:42.753 Processing event: user_update, data: {opt_in_push=true}
+17:23:43.125 User profile is up-to-date, hence not updating

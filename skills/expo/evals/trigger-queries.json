@@ -1,0 +1,14 @@
+[
+  {"query": "integrate webengage to my expo app", "should_trigger": true},
+  {"query": "ok so we use expo router + eas build and marketing wants webengage push and in-app, can you wire it up? license is in our .env", "should_trigger": true},
+  {"query": "my webengage-expo plugin throws 'without any props' during prebuild", "should_trigger": true},
+  {"query": "audit what's already integrated of webengage in this expo repo and tell me whats missing", "should_trigger": true},
+  {"query": "track a 'Purchase' event with webengage when the user pays (expo sdk 54)", "should_trigger": true},
+  {"query": "can I use WebEngage inside Expo Go while I develop?", "should_trigger": true},
+  {"query": "we use MoEngage in our Expo app and want to migrate to WebEngage", "should_trigger": "unclear — migration is not covered by the skill body; decide and update the description or add scope"},
+  {"query": "add WebEngage to my React Native CLI app (no expo)", "should_trigger": false},
+  {"query": "add Firebase Analytics logEvent calls to my Expo checkout flow", "should_trigger": false},
+  {"query": "how do I add WebEngage to my Flutter app", "should_trigger": false},
+  {"query": "set up push notifications in my Expo app with expo-notifications", "should_trigger": false},
+  {"query": "upgrade my Expo app from SDK 52 to 55", "should_trigger": false}
+]
