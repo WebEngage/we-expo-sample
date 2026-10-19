@@ -1,3 +1,5 @@
+const fs = require('fs');
+
 const licenseCode = process.env.WEBENGAGE_LICENSE_CODE ?? '';
 
 // EAS_BUILD_PROFILE is unset in local builds; APP_VARIANT works locally.
@@ -17,8 +19,16 @@ if (!licenseCode) {
   console.warn(`[WebEngage] ${message}`);
 }
 
+// FCM delivery on Android needs google-services.json. It is only referenced when
+// the file exists, so a checkout without it still prebuilds and runs.
+const hasGoogleServices = fs.existsSync('./google-services.json');
+
 module.exports = ({ config }) => ({
   ...config,
+  android: {
+    ...config.android,
+    ...(hasGoogleServices ? { googleServicesFile: './google-services.json' } : {}),
+  },
   plugins: [
     ...(config.plugins ?? []),
     [
@@ -40,6 +50,8 @@ module.exports = ({ config }) => ({
         },
       },
     ],
+    // iOS only: Rich Push extensions. mode must equal push.mode above.
+    ['webengage-expo-push', { mode: isProduction ? 'production' : 'development' }],
     './plugins/withWebEngageAndroidExtras.js',
   ],
 });

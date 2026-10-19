@@ -5,7 +5,9 @@ import React, { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import '@/analytics/webengageBackgroundTask';
 import WebEngageManager from '@/analytics/WebEngageManager';
+import { useWebEngageAndroidPush } from '@/analytics/useWebEngageAndroidPush';
 import { ToastHost } from '@/components/ToastHost';
 import { colors } from '@/constants/theme';
 import { AppProvider, useApp } from '@/context/AppContext';
@@ -59,6 +61,7 @@ export default function RootLayout() {
   useEffect(() => {
     WebEngageManager.init();
   }, []);
+  useWebEngageAndroidPush();
 
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>

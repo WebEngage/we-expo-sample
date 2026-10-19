@@ -36,7 +36,7 @@ State log for resuming this WebEngage integration. Never contains secrets.
 | Debug Mode | build-profile-driven: verbose/`debug: true` unless `APP_VARIANT`/`EAS_BUILD_PROFILE` = `production` | Init |
 | `react-native-webengage` Version | 2.1.0 (declared ^2.1.0) | Init |
 | `webengage-expo` Version | 0.0.3 (declared ^0.0.3) | Init |
-| `webengage-expo-push` Version | not installed | — |
+| `webengage-expo-push` Version | 1.0.0 (declared ^1.0.0) | Push |
 | Expo SDK Version | ~55.0.31 | Pre-Flight |
 | Expo config file | `app.json` + `app.config.js` (Init created `app.config.js`; `app.json` unchanged) | Init |
 | Entry point | `expo-router/entry`; root layout `src/app/_layout.tsx` | Pre-Flight |
@@ -50,6 +50,9 @@ State log for resuming this WebEngage integration. Never contains secrets.
 | New Architecture | on (Expo SDK 55 default) | Pre-Flight |
 | Android Install Referrer | Added (`plugins/withWebEngageAndroidExtras.js`; `implementation` line seen in generated `android/app/build.gradle`) | Init |
 | Existing Android Push Transport Found | none | Pre-Flight |
+| Android push transport | `expo-notifications` + `expo-task-manager` — newly installed with client permission 2026-10-19 | Push |
+| Rich Push (iOS) | On (default) | Push |
+| Universal Links | Off | Push |
 | WebEngage Analytics Wrapper — File Path | `src/analytics/WebEngageManager.ts` | Init |
 | Wrapper — Methods Present | init / login / logout / setEmail / setAttribute / trackEvent | running list |
 | Wrapper — `registerCallbacks()` Blocks | none (method not created) | — |
@@ -70,6 +73,7 @@ State log for resuming this WebEngage integration. Never contains secrets.
 | Tracking User | Complete (written) | Quick — login, logout, 2 attributes | pending | 2026-10-19 |
 | Tracking Events | Complete (written) | Quick — 2 events | pending | 2026-10-19 |
 | Engagement Channels — In-App | Complete — no code at Quick | Quick | pending | 2026-10-19 |
+| Engagement Channels — Push | Complete on Android and iOS — prebuild and `pod install` checks passed | Quick | pending | 2026-10-19 |
 
 ---
 
@@ -104,6 +108,15 @@ Left out: first/last name, phone, gender, birth date, custom editor rows (not se
 
 Not implemented (candidates left out at Quick): wishlist add/remove, sign up completed, search, coupon applied, address saved.
 
+| Push | package.json | `expo-notifications`, `expo-task-manager`, `webengage-expo-push` | — | edited | 2026-10-19 |
+| Push | app.config.js | conditional `googleServicesFile`; `webengage-expo-push` entry | 30, 54 | edited | 2026-10-19 |
+| Push | src/analytics/webengageBackgroundTask.ts | Android background task | 14 | added | 2026-10-19 |
+| Push | src/analytics/useWebEngageAndroidPush.ts | token + foreground forwarding | 16, 27 | added | 2026-10-19 |
+| Push | src/analytics/pushPermission.ts | Android permission + opt-in | 23 | added | 2026-10-19 |
+| Push | src/app/_layout.tsx | side-effect import, hook call | 8, 64 | edited | 2026-10-19 |
+| Push | src/app/(tabs)/index.tsx | permission request on home screen | 18 | edited | 2026-10-19 |
+| Push | android/build.gradle, android/app/build.gradle; ios/NotificationService, ios/NotificationViewController | prebuild output | — | edited by prebuild | 2026-10-19 |
+
 ## Open at the Client
 
 | Item | Goal | Raised | Status |
@@ -113,6 +126,10 @@ Not implemented (candidates left out at Quick): wishlist add/remove, sign up com
 | Check user profile and the two events on the dashboard | Tracking User / Events | 2026-10-19 | pending |
 | Create a live In-App campaign targeting a test user to see it display | In-App | 2026-10-19 | pending |
 | Signing needs the Push capability on iOS | Init | 2026-10-19 | pending |
+| Upload the Firebase service-account JSON (same project as `google-services.json`) to WebEngage → Data Platform → Integrations → Push Setup | Push | 2026-10-19 | pending |
+| Upload the APNs `.p8` key (Key ID, Team ID, bundle ID) to the WebEngage dashboard | Push | 2026-10-19 | pending |
+| Register the extension bundle IDs and the App Group in the Apple Developer account; set `devTeam` for local device builds | Push | 2026-10-19 | pending |
+| Test push on a physical device: foreground, background, closed | Push | 2026-10-19 | pending |
 
 ---
 
@@ -140,6 +157,12 @@ Not implemented (candidates left out at Quick): wishlist add/remove, sign up com
 
 ### 2026-10-19 — Engagement Channels — In-App
 - Status: complete, no code at Quick (works automatically after Init)
+
+### 2026-10-19 — Engagement Channels — Push
+- Status: Quick — complete on both platforms
+- Android transport: expo-notifications (+ task-manager) — newly installed with permission
+- iOS: webengage-expo-push 1.0.0 — Rich Push on; Universal Links off
+- See `.webengage/channels/push.md`
 
 ---
 

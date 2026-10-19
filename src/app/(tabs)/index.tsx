@@ -1,8 +1,9 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 
+import { requestPushPermissionAndOptIn } from '@/analytics/pushPermission';
 import { ProductGrid } from '@/components/ProductGrid';
 import { PromoBanner } from '@/components/PromoBanner';
 import { Button, SectionTitle } from '@/components/ui';
@@ -13,6 +14,9 @@ import { CATEGORIES, PRODUCTS } from '@/data/products';
 export default function Home() {
   const router = useRouter();
   const { user } = useApp();
+  useEffect(() => {
+    requestPushPermissionAndOptIn();
+  }, []);
   const featured = PRODUCTS.slice(0, 6);
   const trending = [...PRODUCTS].sort((a, b) => b.reviews - a.reviews).slice(0, 4);
 

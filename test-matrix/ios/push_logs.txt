@@ -1,0 +1,493 @@
+-[WEGApplicationDelegate applicationDidEnterBackground:] [Line 126]: ===HOOK: applicationDidEnterBackground:
+-[WEGManager saveToPreferencesTheKey:withValue:shouldOverride:] [Line 271]: Prefs Persisted
+-[WEGBufferedBackingStore flush] [Line 97]: WEGEventD: Flush called!
+-[WEGLocalBackingStore processEventsInHandler:] [Line 240]: EVENT_SYNC : statement finalize
+-[WEGLocalBackingStore processEventsInHandler:] [Line 247]: EVENT_SYNC : event to remove
+-[WEGBufferedBackingStore flush]_block_invoke [Line 99]: WEGEventD: Fetched 0 events from localStore
+-[WEGBufferedBackingStore flush]_block_invoke [Line 131]: WEGEventD: EventProcessed: nil
+-[WEGManager saveToPreferencesTheKey:withValue:shouldOverride:] [Line 271]: Prefs Persisted
++[WEGSDKUtils getWegSuperclass:forPrefix:] [Line 42]: Current class: WEG_WEShop.AppDelegate
++[WEGSDKUtils getWegSuperclass:forPrefix:] [Line 42]: Current class: WEG_WEShop.AppDelegate
+Superclass method invocation attempt completed.
+🟢 Posting 'appEntersBackground' event to registered modules
+🟢 Posting 'appEntersBackground' event to registered modules
+-[WEGApplicationDelegate application:didReceiveRemoteNotification:fetchCompletionHandler:] [Line 93]: ===HOOK: didReceiveRemoteNotification:fetchCompletionHandler:
+we_collapse_key not found in customData
+☎️☎️☎️ Invalid or missing scheduled time or timezone. Scheduling now.
+☎️☎️☎️ Invalid trigger or not a calendar trigger.
+-[WEGPushNotificationHandler handlePushFromAppDelegate:finalNotifId:eventsToFire:userInfo:isClick:] [Line 273]: application Background - notification has arrived when app was in background
+COL : stored Notifications
+-[WEGManager saveToPreferencesTheKey:withValue:shouldOverride:] [Line 271]: Prefs Persisted
++[WEGSDKUtils getWegSuperclass:forPrefix:] [Line 42]: Current class: WEG_WEShop.AppDelegate
++[WEGSDKUtils getWegSuperclass:forPrefix:] [Line 42]: Current class: WEG_WEShop.AppDelegate
+Superclass method invocation attempt completed.
+-[WEGApplicationDelegate applicationWillEnterForeground:] [Line 135]: ===HOOK: applicationWillEnterForeground:
+[WEScheduler] : Populate internal Event with shouldDoEvents
+-[WEGConfig doEvent] [Line 1518]: TE : Do event has been fired | 0
+-[WEGConfig doProperties:] [Line 962]: TE : do properties has been called
+-[WEGConfig shouldPerformDoProperties] [Line 956]: TE : do properties Should perform NO
+[WEScheduler] : Populate internal Event with shouldDoEvents
+
+-[WEGConfig doEvent] [Line 1518]: TE : Do event has been fired | 0
+-[WEGConfig doProperties:] [Line 962]: TE : do properties has been called
+-[WEGConfig shouldPerformDoProperties] [Line 956]: TE : do properties Should perform NO
++[WEGSDKUtils getWegSuperclass:forPrefix:] [Line 42]: Current class: WEG_WEShop.AppDelegate
++[WEGSDKUtils getWegSuperclass:forPrefix:] [Line 42]: Current class: WEG_WEShop.AppDelegate
+Superclass method invocation attempt completed.
+🟢 Posting 'appEntersForeground' event to registered modules
+🟢 Posting 'appEntersForeground' event to registered modules
+-[WEGPushNotificationHandler handlePushFromNotificationCenter:finalNotifId:eventsToFire:userInfo:isClick:] [Line 315]: Inactive - the user has tapped in the notification when app was closed or in background
+-[WEGManager saveToPreferencesTheKey:withValue:shouldOverride:] [Line 271]: Prefs Persisted
+-[WEGManager saveToPreferencesTheKey:withValue:shouldOverride:] [Line 271]: Prefs Persisted
+-[WEGPushNotificationHandler handleDeeplink:forPushNotification:] [Line 509]: Push Notification clicked with deepLink: https://wa.me/918806929609?text=Hi userInfo: {
+    aps =     {
+        alert =         {
+            body = Desc;
+            title = "Push Title";
+        };
+        category = 19db52de;
+        "content-available" = 1;
+        "mutable-content" = 1;
+        sound = default;
+    };
+    "cta_list" =     (
+                {
+            a2921326 =             {
+                ctaId = a2921326;
+                deeplink = "https://wa.me/918806929609?text=Hi";
+            };
+        }
+    );
+    customData =     (
+                {
+            key = provider;
+            value = APNS;
+        }
+    );
+    expandableDetails =     {
+        bckColor = "";
+        category = 19db52de;
+        image = "https://picsum.photos/id/100/200/300";
+        message = Desc;
+        ratingScale = 5;
+        rm = "<!DOCTYPE html><html><head></head><body><span id=\"_mce_caret\"><span style=\"text-decoration: line-through;\"><span style=\"color: #339966; text-decoration: line-through;\">Desc</span></span></span></body></html>";
+        rt = "<!DOCTYPE html><html><head></head><body><strong>Push</strong> <em>Title</em></body></html>";
+        style = "BIG_PICTURE";
+    };
+    "experiment_id" = "T_311omhg||351g8e2fi005790_8b2f6584-1f59-4f42-ad91-17e3454953a6#3:1792408776603";
+    "license_code" = "~1341056cd";
+    "notification_id" = "~203jglg";
+    source = webengage;
+}
+webengageBridge: push notification clicked with deeplink: https://wa.me/918806929609?text=Hi
+-[WEGPushNotificationHandler handleDeeplink:forPushNotification:] [Line 515]: WEGHandleDeeplink is implemented in <WEGWebEngageBridge: 0x10326b8e0>. SDK has passed data to Client.
+-[WEGConfig doEvent] [Line 1518]: TE : Do event has been fired | 0
+-[WEGConfig doProperties:] [Line 962]: TE : do properties has been called
+-[WEGConfig shouldPerformDoProperties] [Line 956]: TE : do properties Should perform NO
+-[WEGLocalBackingStore saveEvents:WithCompletionHandler:] [Line 145]: Opened DB for Bulk Save
+-[WEGLocalBackingStore saveEvent:WithDatabase:] [Line 106]: New data, Insert...
+-[WEGSyncAction main]_block_invoke [Line 32]: Event Buffered Successfully
+Error committing transaction: cannot commit - no transaction is active
+-[WEGBufferedBackingStore saveEvents:WithCompletionHandler:]_block_invoke [Line 90]: Event Cached
+-[WEGBufferedBackingStore flush] [Line 97]: WEGEventD: Flush called!
+-[WEGConfig setRefreshTimer]_block_invoke_2 [Line 346]: Performing Config data refresh
+-[WEGConfig getConfigData:completion:] [Line 404]: Will fetch config data for URL from network:
+https://wsdk-files.webengage.com/webengage/~1341056cd/ios/v4.js
+-[WEGConfig getUPF2DataWithWEGList:completion:] [Line 641]: Will fetch upf2 for URL: https://c.webengage.com/upf2.js
+-[WEGLocalBackingStore processEventsInHandler:] [Line 240]: EVENT_SYNC : statement finalize
+-[WEGLocalBackingStore processEventsInHandler:] [Line 247]: EVENT_SYNC : event to remove
+-[WEGBufferedBackingStore flush]_block_invoke [Line 99]: WEGEventD: Fetched 1 events from localStore
+-[WEGBufferedBackingStore flush]_block_invoke [Line 110]: WEGEventD: networkStore save events
+-[WEGNetworkBackingStore saveEvents:WithCompletionHandler:] [Line 48]: Reporting events to network with payload: 
+
+[{"category":"system","cuid":"u_demo","event_name":"push_notification_click","interface_id":"com.webEngage.prodSwift|32B52BD8-CDAA-4C5E-BB73-634C8D6F0574","luid":"8E4AB36F-550F-4F33-9766-6F9350731D3F","suid":"4E39CB24-6449-4D2D-8E47-C1818AE8C877","event_time":"~t2026-10-19T11:19:48.409Z","license_code":"~~1341056cd","event_data":{"provider":"APNS"},"system_data":{"os_version":"26.0","device":"iPhone16,1","experiment_id":"T_311omhg||351g8e2fi005790_8b2f6584-1f59-4f42-ad91-17e3454953a6#3:1792408776603","id":"~~203jglg","app_id":"com.webEngage.prodSwift","carrier":"--","locale":"en_US@rg=inzzzz","sdk_version":70004,"screen_title":"Home","session_count":2,"page_view_count_session":0,"viewport_width":1179,"status_wifi":true,"brand":"Apple","app_version_code":1,"carrier_type":"CTRadioAccessTechnologyLTE","api_version":26,"os_name":"iOS","status_nfc":false,"status_gps":false,"model":"iPhone","release":"26.0","manufacturer":"Apple","status_airplane_mode":false,"session_type":"online","device_type":"Mobile","screen_name":"Home","viewport_height":2556,"call_to_action":"a2921326","sdk_id":3,"tzo":19800,"language":"en-US","app_version":"1.0.0","total_page_view_count":2}}]
+-[WEGNetworkBackingStore saveEvents:WithCompletionHandler:]_block_invoke [Line 67]: EVENT_SYNC : status code : 200d
+-[WEGBufferedBackingStore flush]_block_invoke [Line 115]: WEGEventD: Reported events to network via flush call
+-[WEGBufferedBackingStore flush]_block_invoke [Line 128]: WEGEventD: EventProcessed: 1
+-[WEGLocalBackingStore processEventsInHandler:] [Line 250]: EVENT_SYNC : event size 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: Karnataka || aValue: Karnataka || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: India || aValue: India || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: u_demo || aValue: u_demo || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: ~1341056cd || aValue: ~1341056cd || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: Bengaluru || aValue: Belagavi || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 8E4AB36F-550F-4F33-9766-6F9350731D3F || aValue: 8E4AB36F-550F-4F33-9766-6F9350731D3F || anOption: 1
+-[WEGConfig removeFromDataHolderWithSection:path:] [Line 2037]: WARNING: Cleared whole section web
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: Karnataka || aValue: Karnataka || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 26.0 || aValue: 26.0 || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: iPhone16,1 || aValue: Mobile || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: com.webEngage.prodSwift || aValue: com.webEngage.prodSwift || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: India || aValue: India || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 295BA959-FA68-44E5-A055-38CE4A80FB55 || aValue: 295BA959-FA68-44E5-A055-38CE4A80FB55 || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 26 || aValue: 26 || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: en_US@rg=inzzzz || aValue: en_US@rg=i || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: -- || aValue: -- || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 1 || aValue: 1 || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 70004 || aValue: 70004 || anOption: 1
+-[WEGLocalBackingStore processEventsInHandler:] [Line 256]: EVENT_SYNC : removing all evensts
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 1179 || aValue: 1179 || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: com.webEngage.prodSwift|32B52BD8-CDAA-4C5E-BB73-634C8D6F0574 || aValue: com.webEngage.prodSwift|32B52BD8-CDAA-4C5E-BB73-634C8D6F0574 || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: Apple || aValue: Apple || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 1 || aValue: 1 || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: CTRadioAccessTechnologyLTE || aValue: CTRadioAccessTechnologyLTE || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: iOS || aValue: iOS || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 1 || aValue: 1 || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: iPhone || aValue: iPhone || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: Bengaluru || aValue: Belagavi || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 26.0 || aValue: 26.0 || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: Apple || aValue: Apple || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: Mobile || aValue: Mobile || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 0 || aValue: 0 || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 2556 || aValue: 2556 || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 8E4AB36F-550F-4F33-9766-6F9350731D3F || aValue: 8E4AB36F-550F-4F33-9766-6F9350731D3F || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 3 || aValue: 3 || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: en-US || aValue: en-US || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 1.0.0 || aValue: 1.0.0 || anOption: 1
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue: 6657CAAF-BF44-4A19-A573-7DCFB3E5A74A || aValue: 4E39CB24-6449-4D2D-8E47-C1818AE8C877 || anOption: 1
+-[WEGConfig removeFromDataHolderWithSection:path:] [Line 2037]: WARNING: Cleared whole section static_list
+-[WEGConfig updateDataHolderWithSection:path:value:option:] [Line 1991]: WARNING: Skipped writing data because of no suitable options. currentValue:  || aValue:  || anOption: 1
+-[WEGLocalBackingStore processEventsInHandler:] [Line 240]: EVENT_SYNC : statement finalize
+-[WEGLocalBackingStore processEventsInHandler:] [Line 247]: EVENT_SYNC : event to remove
+-[WEGBufferedBackingStore flush]_block_invoke [Line 99]: WEGEventD: Fetched 0 events from localStore
+-[WEGBufferedBackingStore flush]_block_invoke [Line 131]: WEGEventD: EventProcessed: nil
+🟢 Posting 'appBecomesActive' event to registered modules
+🟢 Posting 'appBecomesActive' event to registered modules
+Response cached for URL: https://wsdk-files.webengage.com/webengage/~1341056cd/ios/v4.js
+-[WEGConfig getConfigData:completion:]_block_invoke [Line 420]: HTTP Status Code: 200
+-[WEGConfig getConfigData:completion:]_block_invoke [Line 425]: Fetched config data:
+{"tzo":19800,"personalizationRuleList":[[{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"home\")  ) ) )","sessionRuleCode":"(($we_getData(\"ios.sdk_version\") >= 2.3))"},"showOnExit":false,"failureTimeout":10000,"totalTimeOnSite":0,"variations":[{"layout":"2341ifb0","resources":[],"lmts":1789512524000,"id":"p4q063","sampling":100.0}],"notificationEncId":"311ol71","targetView":"1001","creationTimestamp":"Wed Sep 16 09:48:24 IST 2026","skipTargetPage":false,"startTimestamp":1789532400000,"order":0},{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"Home\")  ) ) )","sessionRuleCode":"(((  (  (  (($we_getData(\"event_criteria.665930ed.val\")==0 || $we_exists($we_getData(\"event_criteria.665930ed.val\"))==false))  ) && (  ($we_getData(\"event_criteria.~7aac9c3b.val\")>0)  ) ) )) && ($we_getData(\"ios.sdk_version\") >= 2.3))"},"showOnExit":false,"failureTimeout":10000,"totalTimeOnSite":0,"variations":[{"layout":"2341ifb0","resources":[],"lmts":1788236637000,"id":"gq9e1d","sampling":100.0}],"notificationEncId":"3hc7mcl","targetView":"342","creationTimestamp":"Tue Sep 01 15:21:32 IST 2026","skipTargetPage":false,"startTimestamp":1788256500000,"order":0},{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"Home\")  ) ) )","sessionRuleCode":"(($we_getData(\"ios.sdk_version\") >= 2.3))"},"showOnExit":false,"failureTimeout":10000,"totalTimeOnSite":0,"variations":[{"layout":"2341ifb0","resources":[],"lmts":1788241431000,"tokens":[["user","custom","relationship_value_tier"]],"id":"i7m6mf","sampling":100.0}],"notificationEncId":"ja925p","targetView":"722","creationTimestamp":"Tue Sep 01 13:51:27 IST 2026","skipTargetPage":false,"startTimestamp":1788251100000,"order":0},{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen3\")  ) ) )","sessionRuleCode":"(($we_getData(\"ios.sdk_version\") >= 2.3))"},"showOnExit":false,"failureTimeout":10000,"totalTimeOnSite":0,"variations":[{"layout":"~20cc49da","resources":[],"lmts":1768883577000,"id":"~eqds2e","sampling":100.0}],"notificationEncId":"349ksnn","targetView":"31","creationTimestamp":"Tue Jan 20 15:32:36 IST 2026","skipTargetPage":false,"startTimestamp":1768903500000,"order":0},{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen1\")  ) ) )","sessionRuleCode":"(($we_getData(\"ios.sdk_version\") >= 2.3))"},"showOnExit":false,"failureTimeout":10000,"totalTimeOnSite":0,"variations":[{"layout":"2341ifb0","resources":[],"lmts":1766027930000,"id":"2ln911s","sampling":100.0}],"notificationEncId":"~gibpla","targetView":"4","creationTimestamp":"Thu Dec 18 14:14:08 IST 2025","skipTargetPage":false,"startTimestamp":1766047500000,"order":0},{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen2\")  ) ) )","sessionRuleCode":"(($we_getData(\"ios.sdk_version\") >= 2.3))"},"showOnExit":false,"failureTimeout":10000,"totalTimeOnSite":0,"variations":[{"layout":"2341ifb0","resources":[],"lmts":1765520943000,"id":"~am5jti","sampling":100.0}],"notificationEncId":"1gfagrf","targetView":"24","creationTimestamp":"Fri Dec 12 17:23:34 IST 2025","skipTargetPage":false,"startTimestamp":1788948900000,"order":0},{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen4\")  ) ) )","sessionRuleCode":"(($we_getData(\"ios.sdk_version\") >= 2.3))"},"showOnExit":false,"failureTimeout":1,"totalTimeOnSite":0,"variations":[{"layout":"1af576a4","resources":[],"lmts":1765342372000,"id":"1blt2ks","sampling":100.0}],"notificationEncId":"2k75i6o","targetView":"41","creationTimestamp":"Wed Dec 10 15:37:10 IST 2025","skipTargetPage":false,"startTimestamp":1765362000000,"order":0},{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen3\")  ) ) )","sessionRuleCode":"(($we_getData(\"ios.sdk_version\") >= 2.3))"},"showOnExit":false,"failureTimeout":10000,"totalTimeOnSite":0,"variations":[{"layout":"~20cc49da","resources":[],"lmts":1762504331000,"id":"~n50e79","sampling":100.0}],"notificationEncId":"1d7e101","targetView":"31","creationTimestamp":"Fri Nov 07 19:31:48 IST 2025","skipTargetPage":false,"startTimestamp":1762524300000,"order":0},{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen2\")  ) ) )","sessionRuleCode":"(($we_getData(\"ios.sdk_version\") >= 2.3))"},"showOnExit":false,"failureTimeout":100,"totalTimeOnSite":0,"variations":[{"layout":"2341ifb0","resources":[],"lmts":1766011651000,"id":"~12otn4n","sampling":100.0}],"notificationEncId":"~1h2a7lc","targetView":"22","creationTimestamp":"Fri Nov 07 19:29:50 IST 2025","skipTargetPage":false,"startTimestamp":1780658100000,"order":0},{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"S2P1\")  ) ) )","sessionRuleCode":"(($we_getData(\"ios.sdk_version\") >= 2.3))"},"showOnExit":false,"failureTimeout":10000,"totalTimeOnSite":0,"variations":[{"layout":"1af576a4","resources":[],"lmts":1762504137000,"id":"~11dh0dl","sampling":100.0}],"notificationEncId":"~177kd64","targetView":"21","creationTimestamp":"Fri Nov 07 19:27:18 IST 2025","skipTargetPage":false,"startTimestamp":1762524000000,"order":0},{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen1\")  ) ) )","sessionRuleCode":"(($we_getData(\"ios.sdk_version\") >= 2.3))"},"showOnExit":false,"failureTimeout":10000,"totalTimeOnSite":0,"variations":[{"layout":"1af576a4","resources":[],"lmts":1744847992000,"tokens":[["event","custom","add to cart","system","locality"]],"id":"1lbsc0j","sampling":100.0}],"notificationEncId":"~2o22db2","targetView":"2","creationTimestamp":"Mon Feb 10 16:24:39 IST 2025","skipTargetPage":false,"startTimestamp":1739535300000,"order":0},{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen1\")  ) ) )","sessionRuleCode":"(($we_getData(\"ios.sdk_version\") >= 2.3))"},"showOnExit":false,"failureTimeout":10000,"totalTimeOnSite":0,"variations":[{"layout":"2341ifb0","resources":[],"lmts":1769671921000,"id":"23on6b9","sampling":100.0}],"notificationEncId":"mi4jk5","targetView":"1","creationTimestamp":"Fri Nov 22 16:21:06 IST 2024","skipTargetPage":false,"startTimestamp":1769691900000,"order":0}]],"grs":["fonts\/mwidget.ttf","js\/notification-prepare.js"],"upfc":{"jids":{"abnbdl6":["3ipnkgp"]}},"ecl":[{"function":"COUNT","criteria_id":"~7aac9c3b","eventName":"card_application_started","rule":"true","attribute":"1","category":"application"},{"function":"COUNT","criteria_id":"665930ed","eventName":"card_application_completed","rule":"true","attribute":"1","category":"application"},{"function":"COUNT","criteria_id":"987916a4","eventName":"product_viewed","rule":"true","attribute":"1","category":"application"}],"applyUCGToExistingCampaigns":false,"gbp":"https:\/\/msdk-files.webengage.com\/sdk\/2\/0.1\/","domain":"Allen Thomson","notificationRuleList":[[{"excludeUCG":false,"timeSpent":0,"rules":{"pageRuleCode":"true","sessionRuleCode":"(($we_exists($we_getData(\"journey.abnbdl6.3ipnkgp\"))) && ( $we_now() < $we_ref_date($we_date($we_getData(\"journey.abnbdl6.3ipnkgp.start_time\")),\"P30D\")) && ($we_getData(\"ios.sdk_version\") >= 3.2))"},"showOnExit":false,"journeyId":"abnbdl6","totalTimeOnSite":0,"variations":[{"layout":"1af57682","resources":["https:\/\/picsum.photos\/id\/118\/200\/300"],"lmts":1783648547000,"id":"31784975","targetActivities":["https:\/\/picsum.photos\/id\/118\/200\/300","https:\/\/picsum.photos\/id\/118\/200\/300"],"sampling":100.0}],"notificationEncId":"104rrji","creationTimestamp":"2026-07-10 12:54:04.0","fc":true,"skipTargetPage":false,"order":-1}],[{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"home\")  ) ) )","sessionRuleCode":"(((  (  (  ($we_getData(\"event_criteria.987916a4.val\")>0)  ) ) )) && ($we_getData(\"ios.sdk_version\") >= 3.2))"},"showOnExit":false,"totalTimeOnSite":0,"variations":[{"layout":"2341if8h","resources":["https:\/\/picsum.photos\/id\/100\/200\/300"],"lmts":1791531892000,"id":"~197129b16","targetActivities":["sdf","sdf"],"sampling":100.0}],"notificationEncId":"~1dnd380","creationTimestamp":"2026-10-09 17:36:08.0","fc":false,"skipTargetPage":false,"startTimestamp":1791551400000,"order":0},{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"home\")  ) ) )","sessionRuleCode":"(($we_getData(\"ios.sdk_version\") >= 3.2))","eventRuleCode":"(  (  (  (  ($we_exists($we_getData(\"event.product_viewed\")))  ) ) ) )"},"showOnExit":false,"totalTimeOnSite":0,"variations":[{"layout":"1af57682","resources":[],"lmts":1791527151000,"id":"22a363b84","sampling":100.0}],"notificationEncId":"23pn608","creationTimestamp":"2026-10-09 17:22:36.0","fc":false,"skipTargetPage":false,"startTimestamp":1791549000000,"order":0},{"excludeUCG":true,"timeSpent":0,"rules":{"pageRuleCode":"true","sessionRuleCode":"(($we_getData(\"ios.sdk_version\") >= 3.2))"},"showOnExit":false,"totalTimeOnSite":0,"variations":[{"layout":"1af57682","resources":[],"lmts":1789620537000,"id":"~19712854a","targetActivities":["https:\/\/notifynow.web.app\/test","https:\/\/notifynow.web.app\/test"],"sampling":100.0}],"notificationEncId":"1qa0li0","creationTimestamp":"2026-08-12 13:01:36.0","fc":false,"skipTargetPage":false,"startTimestamp":1788778500000,"order":0}]],"geoFences":{"ddo1l3":{"radius":1516.25,"lat":12.9895,"long":77.6742},"~h0regq":{"radius":275.789,"lat":15.845,"long":74.8809},"~cah4rm":{"radius":550.288,"lat":15.8869,"long":74.9267},"~1nggtmr":{"radius":100.0,"lat":15.8128,"long":74.8602},"~1pr6j1t":{"radius":179.271,"lat":15.8622,"long":74.5195},"13gntil":{"radius":5987.72,"lat":13.0553,"long":77.6639},"~9urfhk":{"radius":100.0,"lat":15.5088,"long":76.5228},"~lm6o5u":{"radius":848.657,"lat":15.9693,"long":75.0203},"rfnujf":{"radius":1673.26,"lat":13.0276,"long":77.6463},"8ndn0b":{"radius":53.269,"lat":28.4459,"long":77.04}},"fc":{"ina":{"tg":120000,"vps":10}},"properties":[{"targetView":"1001","pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"home\")  ) ) )","p_id":"be0j5fj"},{"targetView":"342","pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"Home\")  ) ) )","p_id":"2cbe7cl"},{"targetView":"722","pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"Home\")  ) ) )","p_id":"561b4g2"},{"targetView":null,"pageRuleCode":"(  (  (  ($we_matches($we_getData(\"page.system.screen_name\"),[\"^\"+$we_escapeRegex(\"ProductDetail\")+\".*$\"]))  ) ) )","p_id":"71hgi2k"},{"targetView":null,"pageRuleCode":"(  (  (  ($we_matches($we_getData(\"page.system.screen_name\"),[\"^\"+$we_escapeRegex(\"ProductDetail\")+\".*$\"]))  ) ) )","p_id":"63l2b9b"},{"targetView":null,"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"offers\")  ) ) )","p_id":"~a3a1h9f"},{"targetView":"4","pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen1\")  ) ) )","p_id":"~11kjj6c"},{"targetView":"24","pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen2\")  ) ) )","p_id":"~cjmlece"},{"targetView":"41","pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen4\")  ) ) )","p_id":"~dhjcl60"},{"targetView":"31","pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen3\")  ) ) )","p_id":"~79k4k66"},{"targetView":"22","pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen2\")  ) ) )","p_id":"~87gj3mf"},{"targetView":"21","pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"S2P1\")  ) ) )","p_id":"8kam8ci"},{"targetView":null,"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"homeScreen\")  ) ) )","p_id":"2cbe7d2"},{"targetView":"2","pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"ET_home\")  ) ) )","p_id":"~5e3m6jd"},{"targetView":"13","pageRuleCode":"(  (  (  ($we_matches($we_getData(\"page.system.screen_name\"),[\"^\"+$we_escapeRegex(\"screen\")+\".*$\"]))  ) ) )","p_id":"71hgi2l"},{"targetView":"2","pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen1\")  ) ) )","p_id":"~3iagg9h"},{"targetView":null,"pageRuleCode":"(  (  (  ($we_matches($we_getData(\"page.system.screen_name\"),[\"^\"+$we_escapeRegex(\"screen\")+\".*$\"]))  ) ) )","p_id":"~4g78033"},{"targetView":"1","pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"screen1\")  ) ) )","p_id":"561b4g4"},{"targetView":null,"pageRuleCode":"(  (  (  ($we_getData(\"page.system.screen_name\")==\"dashboard_screen\")  ) ) )","p_id":"~95daafg"},{"targetView":null,"pageRuleCode":"(  (  (  ($we_matches($we_getData(\"page.system.screen_name\"),[\"^.*\"+$we_escapeRegex(\"dashboard_screen\")+\".*$\"]))  ) ) )","p_id":"ag44lml"},{"targetView":null,"pageRuleCode":"(  (  (  ($we_matches($we_getData(\"page.system.screen_name\"),[\"^\"+$we_escapeRegex(\"dsdsd\")+\".*$\"]))  ) ) )","p_id":"~bm377ic"}],"events":{},"cgDetails":{"UNIVERSAL":{"~24cqmce":{"name":null,"range":"[[0,2]]"}}}}
+-[WEGManager saveToPreferencesTheKey:withValue:shouldOverride:] [Line 271]: Prefs Persisted
+-[WEGManager saveToPreferencesTheKey:withValue:shouldOverride:] [Line 271]: Prefs Persisted
+-[WEGConfig performCleanup] [Line 560]: PC: performCleanup
+-[WEGConfig performCleanup] [Line 561]: PC: {
+    "1qa0li0_view" = 1;
+}
+-[WEGConfig resetEventRuleExecutionPendingCampaigns:] [Line 1325]: TE : Resetting Only InApp Campaigns
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_getData("ios.sdk_version") >= 2.3))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_getData` ( "ios.sdk_version" ) >= 2.3 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "ios.sdk_version" , $we_getData( 2.3 >=
+-[WEGConfig doSession:] [Line 1263]: 2k75i6o will wait for other rules
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_getData("ios.sdk_version") >= 2.3))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_getData` ( "ios.sdk_version" ) >= 2.3 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "ios.sdk_version" , $we_getData( 2.3 >=
+-[WEGConfig doSession:] [Line 1263]: mi4jk5 will wait for other rules
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (((  (  (  ($we_getData("event_criteria.987916a4.val")>0)  ) ) )) && ($we_getData("ios.sdk_version") >= 3.2))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( ( ( ( ( `$we_getData` ( "event_criteria.987916a4.val" ) > 0 ) ) ) ) ) && ( `$we_getData` ( "ios.sdk_version" ) >= 3.2 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "event_criteria.987916a4.val" , $we_getData( 0 > [] "ios.sdk_version" , $we_getData( 3.2 >= &&
+-[WEGConfig doSession:] [Line 1258]: Notification Session Rule Failed for ~1dnd380
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (((  (  (  (($we_getData("event_criteria.665930ed.val")==0 || $we_exists($we_getData("event_criteria.665930ed.val"))==false))  ) && (  ($we_getData("event_criteria.~7aac9c3b.val")>0)  ) ) )) && ($we_getData("ios.sdk_version") >= 2.3))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( ( ( ( ( ( `$we_getData` ( "event_criteria.665930ed.val" ) == 0 || `$we_exists` ( `$we_getData` ( "event_criteria.665930ed.val" ) ) == ~false ) ) ) && ( ( `$we_getData` ( "event_criteria.~7aac9c3b.val" ) > 0 ) ) ) ) ) && ( `$we_getData` ( "ios.sdk_version" ) >= 2.3 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "event_criteria.665930ed.val" , $we_getData( 0 == [] [] "event_criteria.665930ed.val" , $we_getData( , $we_exists( false == || [] "event_criteria.~7aac9c3b.val" , $we_getData( 0 > && [] "ios.sdk_version" , $we_getData( 2.3 >= &&
+-[WEGConfig doSession:] [Line 1258]: Notification Session Rule Failed for 3hc7mcl
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_exists($we_getData("journey.abnbdl6.3ipnkgp"))) && ( $we_now() < $we_ref_date($we_date($we_getData("journey.abnbdl6.3ipnkgp.start_time")),"P30D")) && ($we_getData("ios.sdk_version") >= 3.2))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_exists` ( `$we_getData` ( "journey.abnbdl6.3ipnkgp" ) ) ) && ( `$we_now` ( ) < `$we_ref_date` ( `$we_date` ( `$we_getData` ( "journey.abnbdl6.3ipnkgp.start_time" ) ) , "P30D" ) ) && ( `$we_getData` ( "ios.sdk_version" ) >= 3.2 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] [] "journey.abnbdl6.3ipnkgp" , $we_getData( , $we_exists( [] $we_now( [] [] [] "journey.abnbdl6.3ipnkgp.start_time" , $we_getData( , $we_date( , "P30D" , $we_ref_date( < [] "ios.sdk_version" , $we_getData( 3.2 >= && &&
++[WEGRuleEngine defaultRuntimeWithDataContext:]_block_invoke [Line 422]: Current time value: 2026-10-19 11:19:49 +0000
++[WEGRuleEngine defaultRuntimeWithDataContext:]_block_invoke [Line 438]: Evaluating reference date from 1970-01-01 00:00:00 +0000 with duration P30D
+-[WEGConfig doSession:] [Line 1258]: Notification Session Rule Failed for 104rrji
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_getData("ios.sdk_version") >= 3.2))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_getData` ( "ios.sdk_version" ) >= 3.2 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "ios.sdk_version" , $we_getData( 3.2 >=
+-[WEGConfig doSession:] [Line 1263]: 1qa0li0 will wait for other rules
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_getData("ios.sdk_version") >= 2.3))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_getData` ( "ios.sdk_version" ) >= 2.3 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "ios.sdk_version" , $we_getData( 2.3 >=
+-[WEGConfig doSession:] [Line 1263]: ja925p will wait for other rules
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_getData("ios.sdk_version") >= 2.3))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_getData` ( "ios.sdk_version" ) >= 2.3 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "ios.sdk_version" , $we_getData( 2.3 >=
+-[WEGConfig doSession:] [Line 1263]: 1gfagrf will wait for other rules
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_getData("ios.sdk_version") >= 2.3))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_getData` ( "ios.sdk_version" ) >= 2.3 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "ios.sdk_version" , $we_getData( 2.3 >=
+-[WEGConfig doSession:] [Line 1263]: ~177kd64 will wait for other rules
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_getData("ios.sdk_version") >= 2.3))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_getData` ( "ios.sdk_version" ) >= 2.3 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "ios.sdk_version" , $we_getData( 2.3 >=
+-[WEGConfig doSession:] [Line 1263]: ~2o22db2 will wait for other rules
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_getData("ios.sdk_version") >= 3.2))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_getData` ( "ios.sdk_version" ) >= 3.2 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "ios.sdk_version" , $we_getData( 3.2 >=
+-[WEGConfig doSession:] [Line 1263]: 23pn608 will wait for other rules
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_getData("ios.sdk_version") >= 2.3))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_getData` ( "ios.sdk_version" ) >= 2.3 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "ios.sdk_version" , $we_getData( 2.3 >=
+-[WEGConfig doSession:] [Line 1263]: ~gibpla will wait for other rules
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_getData("ios.sdk_version") >= 2.3))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_getData` ( "ios.sdk_version" ) >= 2.3 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "ios.sdk_version" , $we_getData( 2.3 >=
+-[WEGConfig doSession:] [Line 1263]: 1d7e101 will wait for other rules
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_getData("ios.sdk_version") >= 2.3))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_getData` ( "ios.sdk_version" ) >= 2.3 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "ios.sdk_version" , $we_getData( 2.3 >=
+-[WEGConfig doSession:] [Line 1263]: 349ksnn will wait for other rules
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_getData("ios.sdk_version") >= 2.3))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_getData` ( "ios.sdk_version" ) >= 2.3 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "ios.sdk_version" , $we_getData( 2.3 >=
+-[WEGConfig doSession:] [Line 1263]: ~1h2a7lc will wait for other rules
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (($we_getData("ios.sdk_version") >= 2.3))
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( `$we_getData` ( "ios.sdk_version" ) >= 2.3 ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "ios.sdk_version" , $we_getData( 2.3 >=
+-[WEGConfig doSession:] [Line 1263]: 311ol71 will wait for other rules
+-[WEGConfig resetEventRuleExecutionPendingCampaigns:] [Line 1325]: TE : Resetting Only InApp Campaigns
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 311ol71
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule 311ol71
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for ja925p
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule ja925p
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 349ksnn
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule 349ksnn
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for ~gibpla
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule ~gibpla
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 1gfagrf
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule 1gfagrf
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 2k75i6o
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule 2k75i6o
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 1d7e101
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule 1d7e101
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for ~1h2a7lc
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule ~1h2a7lc
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for ~177kd64
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule ~177kd64
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for ~2o22db2
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule ~2o22db2
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for mi4jk5
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule mi4jk5
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 23pn608
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: (  (  (  ($we_getData("page.system.screen_name")=="home")  ) ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ( ( ( ( `$we_getData` ( "page.system.screen_name" ) == "home" ) ) ) )
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ [] "page.system.screen_name" , $we_getData( "home" ==
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1488]: Notification Page Rule Failed for 23pn608
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 1qa0li0
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: true
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ~true
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ true
+WEGLCH : LifeCycle Notification shown 1qa0li0_view ++++++++
+WEGLCH : Details: Optional("") 
+-[WEGRenderer renderNotification:] [Line 153]: Rendering In-App for notification:
+{
+    creationTimestamp = "2026-08-12 13:01:36.0";
+    excludeUCG = 1;
+    fc = 0;
+    notificationEncId = 1qa0li0;
+    order = 0;
+    priority = 1;
+    rules =     {
+        pageRuleCode = true;
+        sessionRuleCode = "(($we_getData(\"ios.sdk_version\") >= 3.2))";
+    };
+    showOnExit = 0;
+    skipTargetPage = 0;
+    startTimestamp = 1788778500000;
+    subPriority = 2;
+    timeSpent = 0;
+    totalTimeOnSite = 0;
+    variations =     (
+                {
+            id = "~19712854a";
+            layout = 1af57682;
+            lmts = 1789620537000;
+            resources =             (
+            );
+            sampling = 100;
+            targetActivities =             (
+                "https://notifynow.web.app/test",
+                "https://notifynow.web.app/test"
+            );
+        }
+    );
+}
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1462]: render for 1qa0li0
+-[WEGRenderer getNotificationDataFor:completion:]_block_invoke [Line 778]: Notification Data :- {
+    actions =     (
+                {
+            actionCategory = CTA;
+            actionEId = a29533c9;
+            actionLink = "https://notifynow.web.app/test";
+            actionTarget = "_top";
+            actionText = "Test Unacademy";
+            isPrime = 1;
+            sdkId = 3;
+            type = "DEEP_LINK";
+        },
+                {
+            actionCategory = CTA;
+            actionEId = ae616712;
+            actionLink = "w://p/open_url_in_browser/https%3A%2F%2Fnotifynow.web.app%2Ftest";
+            actionTarget = "_top";
+            actionText = "Test Unacademy";
+            isPrime = 1;
+            sdkId = 2;
+            type = "EXTERNAL_URL";
+        }
+    );
+    canClose = 1;
+    canMinimize = 1;
+    config =     {
+        backgroundColor = "#287FDF";
+        descriptionColor = "#FFFFFF";
+        fontFamily = "Sans-Serif";
+        hideLogo = 0;
+    };
+    description = "~1341056cd is integrated to this!";
+    direction = ltr;
+    id = "~19712854a";
+    isActive = 1;
+    layoutAttributes =     {
+        animDuration = 500;
+        "close_text" = Close;
+        entryAnimation = "TOP_IN";
+        exitAnimation = "TOP_OUT";
+        "icon_url" = "https://media.giphy.com/media/QxSSrQxSKaFECD7ywx/giphy.gif?cid=82a1493bjpgrr56wepnnhjfuf02inynrdt7e4e2idzj8hdiq&ep=v1_gifs_trending&rid=giphy.gif&ct=g";
+        landscape =         {
+            height = 76;
+        };
+        logoHeight = 0;
+        portrait =         {
+            height = 116;
+        };
+        responsiveThreshold = 500;
+        type = HEADER;
+    };
+    licenseCode = "~1341056cd";
+    notificationEncId = 1qa0li0;
+    showTitle = 1;
+}
++[WEGRenderer appWindow] [Line 61]: WEGEventD: AppWindow: iOS >=13
++[WEGRenderer appWindow] [Line 64]: WEGEventD: AppWindow: Found active scene
++[WEGRenderer appWindow] [Line 83]: WEGEventD: AppWindow: Topmost normal window found
++[WEGRenderer appWindow] [Line 61]: WEGEventD: AppWindow: iOS >=13
++[WEGRenderer appWindow] [Line 64]: WEGEventD: AppWindow: Found active scene
++[WEGRenderer appWindow] [Line 83]: WEGEventD: AppWindow: Topmost normal window found
+-[WEGRenderer performMainQueueOperationsOfRenderNotificationWith:html:] [Line 331]: Will show header/footer In-App Notification Screen
+-[WEGNotificationViewController webView:didStartProvisionalNavigation:] [Line 550]: In-App WebView started loading
+-[WEGRenderer handleInAppBridgeMessage:] [Line 846]: In-App Bridge Message: {
+    action = resizeWebView;
+    data =     {
+        height = 50;
+        width = 277;
+    };
+}
+-[WEGRenderer handleInAppBridgeMessage:] [Line 1008]: ResizeWebView Action Received
+-[WEGRenderer handleInAppBridgeMessage:] [Line 1011]: ResizeWebView skipped: not a revamped notification
+-[WEGRenderer handleInAppBridgeMessage:] [Line 846]: In-App Bridge Message: {
+    action = open;
+    data =     {
+    };
+}
+-[WEGRenderer handleInAppBridgeMessage:] [Line 886]: Open Action Received
+-[WEGNotificationViewController webView:didFinishNavigation:] [Line 558]: In-App WebView finished loading — presenting to user
++[WEGRenderer appWindow] [Line 61]: WEGEventD: AppWindow: iOS >=13
++[WEGRenderer appWindow] [Line 64]: WEGEventD: AppWindow: Found active scene
++[WEGRenderer appWindow] [Line 83]: WEGEventD: AppWindow: Topmost normal window found
+-[WEGConfig resetEventRuleExecutionPendingCampaigns:] [Line 1325]: TE : Resetting Only InApp Campaigns
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 311ol71
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule 311ol71
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for ja925p
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule ja925p
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 349ksnn
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule 349ksnn
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for ~gibpla
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule ~gibpla
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 1gfagrf
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule 1gfagrf
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 2k75i6o
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule 2k75i6o
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 1d7e101
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule 1d7e101
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for ~1h2a7lc
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule ~1h2a7lc
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for ~177kd64
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule ~177kd64
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for ~2o22db2
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule ~2o22db2
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for mi4jk5
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1493]: Skipping to check page rule mi4jk5
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 23pn608
+-[WEGConfig performBaseCheck:] [Line 2338]: Another Notification Rendering :  1qa0li0, check Failed for 23pn608
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1497]: BaseCheck Failed For 23pn608
+-[WEGConfig performBaseCheck:] [Line 2323]: Base check checking for 1qa0li0
+-[WEGRuleEngine evaluateRule:withOperandData:] [Line 569]: Evaluating Rule: true
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 121]: Lexical Stream
+ ~true
+-[XEVEvaluationEngine compile:withFailureReport:] [Line 125]: Postfix
+ true
+WEGLCH : LifeCycle Notification shown 1qa0li0_view ++++++++
+WEGLCH : Details: Optional("") 
+-[WEGRenderer renderNotification:] [Line 153]: Rendering In-App for notification:
+{
+    creationTimestamp = "2026-08-12 13:01:36.0";
+    excludeUCG = 1;
+    fc = 0;
+    notificationEncId = 1qa0li0;
+    order = 0;
+    priority = 1;
+    rules =     {
+        pageRuleCode = true;
+        sessionRuleCode = "(($we_getData(\"ios.sdk_version\") >= 3.2))";
+    };
+    showOnExit = 0;
+    skipTargetPage = 0;
+    startTimestamp = 1788778500000;
+    subPriority = 2;
+    timeSpent = 0;
+    totalTimeOnSite = 0;
+    variations =     (
+                {
+            id = "~19712854a";
+            layout = 1af57682;
+            lmts = 1789620537000;
+            resources =             (
+            );
+            sampling = 100;
+            targetActivities =             (
+                "https://notifynow.web.app/test",
+                "https://notifynow.web.app/test"
+            );
+        }
+    );
+}
+-[WEGConfig doPageWithisScreenNavigation:updatingECL:] [Line 1462]: render for 1qa0li0
+-[WEGConfig doEvent] [Line 1518]: TE : Do event has been fired | 0
+-[WEGConfig doProperties:] [Line 962]: TE : do properties has been called
+-[WEGConfig shouldPerformDoProperties] [Line 956]: TE : do properties Should perform NO
+-[WEGLocalBackingStore saveEvents:WithCompletionHandler:] [Line 145]: Opened DB for Bulk Save
+-[WEGLocalBackingStore saveEvent:WithDatabase:] [Line 106]: New data, Insert...
+-[WEGSyncAction main]_block_invoke [Line 32]: Event Buffered Successfully
+Error committing transaction: cannot commit - no transaction is active
+-[WEGBufferedBackingStore saveEvents:WithCompletionHandler:]_block_invoke [Line 90]: Event Cached
+Failed to change to usage state 2: (null)
