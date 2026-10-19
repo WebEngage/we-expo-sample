@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
+import WebEngageManager from '@/analytics/WebEngageManager';
 import { COUPONS, getProduct } from '@/data/products';
 import type {
   Account,
@@ -95,6 +96,13 @@ const initialState = (): Persisted => ({
   inbox: seedInbox(),
   recentSearches: [],
 });
+
+/** Identifies the signed-in user to WebEngage and sends their profile attributes. */
+function identifyUser(acc: Account) {
+  WebEngageManager.login(acc.id);
+  if (acc.email) WebEngageManager.setEmail(acc.email);
+  if (acc.city) WebEngageManager.setAttribute('City', acc.city);
+}
 
 export interface Totals {
   subtotal: number;
@@ -193,7 +201,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     (async () => {
       try {
         const raw = await AsyncStorage.getItem(STORAGE_KEY);
-        if (raw) setState({ ...initialState(), ...JSON.parse(raw) });
+        if (raw) {
+          const restored: Persisted = { ...initialState(), ...JSON.parse(raw) };
+          setState(restored);
+          // A restored session skips the login screen, so identify the user here.
+          if (restored.session?.type === 'user') {
+            const userId = restored.session.userId;
+            const acc = restored.accounts.find((a) => a.id === userId);
+            if (acc) identifyUser(acc);
+          }
+        }
       } catch {
         // fall back to the initial state
       }
@@ -244,6 +261,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     if (!acc) return { ok: false, message: 'No account found for this email. Please sign up.' };
     if (acc.password !== password) return { ok: false, message: 'Incorrect password.' };
     patch({ session: { type: 'user', userId: acc.id } });
+    identifyUser(acc);
     return { ok: true };
   };
 
@@ -265,6 +283,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       password: input.password,
     };
     patch((s) => ({ accounts: [...s.accounts, account], session: { type: 'user', userId: account.id } }));
+    identifyUser(account);
     return { ok: true };
   };
 
@@ -273,6 +292,8 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   };
 
   const logout = () => {
+    // Guests were never identified, so there is nothing to log out of.
+    if (state.session?.type === 'user') WebEngageManager.logout();
     patch({ session: null, cart: [], coupon: null });
   };
 
@@ -291,6 +312,16 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const addToCart: AppContextValue['addToCart'] = (product, opts = {}) => {
     const qty = opts.qty ?? 1;
     const key = `${product.id}|${opts.size ?? ''}|${opts.color ?? ''}`;
+    // Fired here, outside the state updater below, so it can never run twice.
+    WebEngageManager.trackEvent('Added To Cart', {
+      ...opts.extra,
+      'Product ID': product.id,
+      'Product Name': product.name,
+      Category: product.category,
+      Price: product.price,
+      Quantity: qty,
+      Currency: 'USD',
+    });
     patch((s) => {
       const existing = s.cart.find((i) => i.key === key);
       if (existing) {
@@ -357,6 +388,15 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
       read: false,
     };
     patch((s) => ({ orders: [order, ...s.orders], cart: [], coupon: null, inbox: [confirmation, ...s.inbox] }));
+    WebEngageManager.trackEvent('Order Placed', {
+      ...extra,
+      'Order ID': order.id,
+      Amount: order.total,
+      'Item Count': order.items.reduce((n, i) => n + i.qty, 0),
+      'Payment Method': order.paymentMethod,
+      ...(order.coupon ? { Coupon: order.coupon } : {}),
+      Currency: 'USD',
+    });
     return order;
   };
 

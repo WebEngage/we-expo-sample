@@ -1,0 +1,127 @@
+15:56:18.072 Initializing WebEngage SDK
+15:56:18.072  WebEngage constructor called
+15:56:18.088 Returning no-op implementation of WebEngage
+15:56:18.089 New luid: 000001a1-53b2-a168-b013-b899638df9a5
+15:56:18.091 Processing event: visitor_new_session, data: {session_type=background}
+15:56:18.096 Unable to initialize location module. Please use play-services-location version 21.0.1 or higher to enable location and geofence features
+15:56:18.097 Creating default notification channel with Channel ID = we_wk_push_channel and name = Marketing
+15:56:18.099 Default push channel registered
+15:56:18.099  WEInspector WebEngage Successfully Initialized
+15:56:18.099 Current interface_id: 
+15:56:18.099 Current luid: 000001a1-53b2-a168-b013-b899638df9a5
+15:56:18.099 Current cuid: 
+15:56:18.099 Current token FCM: 
+15:56:18.099 Current token MI: 
+15:56:18.099 Current token HW: 
+15:56:18.099 Current WebEngage Configuration: LocationTracking: false
+             LocationTrackingStrategy: DISABLED
+             ShouldTrackIPLocation: true
+             AutoGCMRegistration: false
+             WebEngageKey: ~1341056cd
+             GCMProjectNumber: null
+             WebEngageVersion: 5.2.0
+             ReportingStrategy: BUFFER
+             DebugMode: true
+             EveryActivityIsScreen: false
+             Environment: aws
+             AlternateInterfaceId: false
+             PushSmallIcon: -1
+             PushLargeIcon: -1
+             AccentColor: -1
+             FilterCustomEvent: false
+             SessionDestroyTime: -1
+             DefaultPushChannelConfiguration: ChannelId: we_wk_push_channel
+             ChannelName: Marketing
+             ChannelImportance: 3
+             ChannelDescription: null
+             ChannelGroup: null
+             ChannelColor: -1
+             LockScreenVisibility: 1
+             ShowBadge: true
+             Sound: null
+             Vibration: true
+             AutoGAIDTracking: true
+             ProxyURL: false
+             ShouldEncryptUserStorage: false
+             isFirstAcquisitionTrackingDisabled: false
+15:56:18.099 SDT from app config: -1
+15:56:18.099 isInstallReferrerSet false
+15:56:18.250  Activity start: com.webengage.reactSample.MainActivity
+15:56:18.250 Processing event: we_wk_activity_start, data: {screen_title=WE Shop, screen_path=com.webengage.reactSample.MainActivity}
+15:56:18.268 is First Acq. Tracking Disabled? false
+15:56:18.272 Referrer Url: utm_source=google-play&utm_medium=organic
+15:56:18.288 com.google.android.gms.ads.identifier.AdvertisingIdClient or Google play-services is missing
+15:56:18.288 Generating UUID as advertisement is unavailable: c3d2d831-9571-4d06-8b37-999c37916064
+15:56:18.289 generated new WEInstanceID
+15:56:18.369 Error -1 while fetching response from url https://wsdk-files.webengage.com/webengage/~1341056cd/android/v4.js
+15:56:18.369 ConfigurationAction result data is null
+15:56:18.370 Error -1 while fetching response from url https://wsdk-files.webengage.com/webengage/~1341056cd/android/v4.js
+15:56:18.375 evaluated campaigns: [] with chain: [sessionRuleCode, pageRuleCode]
+15:56:18.375 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+15:56:18.376 Processing event: app_installed, data: {referrer=utm_source=google-play&utm_medium=organic, campaign_medium=organic, campaign_source=google-play}
+15:56:18.398 Session Referrer(Landing Page) extracted: 
+15:56:18.434 com.google.android.gms.ads.identifier.AdvertisingIdClient or Google play-services is missing
+15:56:18.511 Error -1 while fetching response from url https://wsdk-files.webengage.com/webengage/~1341056cd/android/v4.js
+15:56:18.512 evaluated campaigns: [] with chain: [sessionRuleCode, pageRuleCode]
+15:56:18.512 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+15:56:18.520 Processing event: visitor_session_close
+15:56:18.524 Session Referrer(Landing Page) extracted: 
+15:56:18.529 Session Referrer(Landing Page) extracted: weshop://expo-development-client/?url=http%3A%2F%2F192.168.0.102%3A8081
+15:56:18.529 Processing event: visitor_new_session, system-data: {session_type=online}, event-data: {sdk_meta=rn_expo:0.0.3;rn:2.1.0}
+15:56:20.259 Unable to initialize location module. Please use play-services-location version 21.0.1 or higher to enable location and geofence features
+15:56:20.259 Unable to initialize location module. Please use play-services-location version 21.0.1 or higher to enable location and geofence features
+15:56:20.259 Unable to initialize location module. Please use play-services-location version 21.0.1 or higher to enable location and geofence features
+15:56:20.259 Unable to initialize location module. Please use play-services-location version 21.0.1 or higher to enable location and geofence features
+15:56:20.260 Unable to initialize location module. Please use play-services-location version 21.0.1 or higher to enable location and geofence features
+15:56:20.260 Unable to initialize location module. Please use play-services-location version 21.0.1 or higher to enable location and geofence features
+15:56:20.260 Unable to initialize location module. Please use play-services-location version 21.0.1 or higher to enable location and geofence features
+15:56:20.260 Unable to initialize location module. Please use play-services-location version 21.0.1 or higher to enable location and geofence features
+15:56:20.260 Unable to initialize location module. Please use play-services-location version 21.0.1 or higher to enable location and geofence features
+15:56:20.260 Unable to initialize location module. Please use play-services-location version 21.0.1 or higher to enable location and geofence features
+15:56:20.280 evaluated campaigns: [] with chain: [sessionRuleCode, pageRuleCode]
+15:56:20.280 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+15:56:21.737 evaluated campaigns: [] with chain: [sessionRuleCode, pageRuleCode]
+15:56:21.737 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+15:56:22.387 com.google.android.gms.ads.identifier.AdvertisingIdClient or Google play-services is missing
+15:56:22.403 evaluated campaigns: [] with chain: [sessionRuleCode, pageRuleCode]
+15:56:22.403 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+15:56:22.642 evaluated campaigns: [] with chain: [eventRuleCode]
+15:56:22.642 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+15:56:23.085 Events successfully Logged to server, scheduling next sync
+15:56:27.139 Event queued (no listeners): onAnonymousIdChanged | pending=1
+16:05:29.790 Processing event: user_logged_in
+16:05:29.792 Processing event: user_update, data: {email=demo@weshop.com}
+16:05:29.792 Processing event: user_update, data: {City=Mumbai}
+16:05:29.823 User successfully Logged in
+16:05:29.826 evaluated campaigns: [] with chain: [sessionRuleCode, pageRuleCode, eventRuleCode]
+16:05:29.826 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+16:05:30.115 evaluated campaigns: [] with chain: [sessionRuleCode, pageRuleCode]
+16:05:30.115 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+16:05:30.117 User profile is up-to-date, hence not updating
+16:05:30.117 User profile is up-to-date, hence not updating
+16:05:30.924 Events successfully Logged to server, scheduling next sync
+16:05:33.507 Processing event: Added To Cart, data: {Product ID=p6, Category=electronics, Price=49.99, Currency=USD, Product Name=Smart Fitness Band, Quantity=1.0}
+16:05:33.510 evaluated campaigns: [] with chain: [eventRuleCode]
+16:05:33.510 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+16:05:33.517 Event : Added To Cart successfully Logged
+16:05:34.412 Processing event: Added To Cart, data: {Product ID=p6, Category=electronics, Price=49.99, Currency=USD, Product Name=Smart Fitness Band, Quantity=1.0}
+16:05:34.465 evaluated campaigns: [] with chain: [eventRuleCode]
+16:05:34.465 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+16:05:34.498 Event : Added To Cart successfully Logged
+16:05:34.807 Processing event: Added To Cart, data: {Product ID=p6, Category=electronics, Price=49.99, Currency=USD, Product Name=Smart Fitness Band, Quantity=1.0}
+16:05:34.809 evaluated campaigns: [] with chain: [eventRuleCode]
+16:05:34.809 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+16:05:34.814 Event : Added To Cart successfully Logged
+16:05:35.103 Events successfully Logged to server, scheduling next sync
+16:05:49.057 Events successfully Logged to server, scheduling next sync
+16:06:02.192 Processing event: Added To Cart, data: {Product ID=p6, Category=electronics, Price=49.99, Currency=USD, Product Name=Smart Fitness Band, Quantity=1.0}
+16:06:02.197 evaluated campaigns: [] with chain: [eventRuleCode]
+16:06:02.197 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+16:06:02.202 Event : Added To Cart successfully Logged
+16:06:02.340 Processing event: Added To Cart, data: {Product ID=p6, Category=electronics, Price=49.99, Currency=USD, Product Name=Smart Fitness Band, Quantity=1.0}
+16:06:02.367 evaluated campaigns: [] with chain: [eventRuleCode]
+16:06:02.367 Not processing inline campaigns as their is no change, new ids: [] old ids: []
+16:06:02.380 Event : Added To Cart successfully Logged
+
+
+// In-App is not shown!

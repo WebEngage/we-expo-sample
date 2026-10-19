@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
+import WebEngageManager from '@/analytics/WebEngageManager';
 import { ToastHost } from '@/components/ToastHost';
 import { colors } from '@/constants/theme';
 import { AppProvider, useApp } from '@/context/AppContext';
@@ -55,6 +56,10 @@ function Navigator() {
 }
 
 export default function RootLayout() {
+  useEffect(() => {
+    WebEngageManager.init();
+  }, []);
+
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
