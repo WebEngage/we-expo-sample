@@ -37,7 +37,8 @@
           }
         }
       ],
-      "expo-image"
+      "expo-image",
+      "./plugins/withDemoPushExtensions"
     ],
     "experiments": {
       "typedRoutes": false,
