@@ -49,6 +49,7 @@ function Navigator() {
         <Stack.Screen name="profile-edit" options={{ title: 'Edit profile' }} />
         <Stack.Screen name="notification-settings" options={{ title: 'Notification settings' }} />
         <Stack.Screen name="inbox" options={{ title: 'Notifications' }} />
+        <Stack.Screen name="push-test" options={{ title: 'Extension test' }} />
       </Stack.Protected>
     </Stack>
   );

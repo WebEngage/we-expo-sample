@@ -9,7 +9,8 @@
     "userInterfaceStyle": "light",
     "ios": {
       "bundleIdentifier": "com.webEngage.prodSwift",
-      "supportsTablet": false
+      "supportsTablet": false,
+      "appleTeamId": "S7X7V9YPX7"
     },
     "android": {
       "package": "com.webengage.reactSample",
@@ -38,7 +39,15 @@
         }
       ],
       "expo-image",
-      "./plugins/withDemoPushExtensions"
+      [
+        "./plugins/withDemoPushExtensions",
+        {
+          "appGroup": false,
+          "nseBundleSuffix": "NotificationService",
+          "ceBundleSuffix": "NotificationContent"
+        }
+      ],
+      "expo-notifications"
     ],
     "experiments": {
       "typedRoutes": false,

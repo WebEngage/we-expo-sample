@@ -1,3 +1,4 @@
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native';
 
@@ -21,6 +22,7 @@ const stringify = (data: Payload) => JSON.stringify(data, null, 2);
 
 export default function TestLab() {
   const { showToast } = useApp();
+  const router = useRouter();
   const [mode, setMode] = useState<Mode>('event');
   const [log, setLog] = useState<LogEntry[]>([]);
 
@@ -69,6 +71,7 @@ export default function TestLab() {
 
   return (
     <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+      <Button title="Notification extension test" icon="notifications-outline" variant="secondary" onPress={() => router.push('/push-test' as never)} testID="lab-push-test" />
       <Text style={styles.intro}>
         Compose any custom event, screen view or user attribute with typed values. Each entry is recorded in the log below.
       </Text>

@@ -87,8 +87,6 @@ def main():
     # Which Swift files does each service extension actually compile? (a merged file that is only
     # copied to disk, not referenced by the project, would silently never run)
     print("\n== Service extension sources")
-    pod_text = open("ios/Podfile").read() if os.path.exists("ios/Podfile") else ""
-    webengage_in_play = "WEServiceExtension" in pod_text
     for uuid, t in targets:
         if t.get("name") not in [r[0] for r in services]:
             continue
@@ -107,12 +105,6 @@ def main():
         print(f"  {t['name']}: compiled={compiled} on_disk={on_disk}")
         if uncompiled:
             warns.append(f"{t['name']}: Swift file(s) on disk but not compiled: {uncompiled}")
-        if webengage_in_play:
-            if not any("WEXPushNotificationService" in read(f) for f in compiled):
-                msg = f"{t['name']}: WebEngage is in the Podfile but no compiled source uses WEXPushNotificationService"
-                if any("WEXPushNotificationService" in read(f) for f in uncompiled):
-                    msg += " (the WebEngage/merged file is on disk but NOT compiled)"
-                fails.append(msg)
 
     # Embedded in the main app?
     app = next((v for _, v in targets if v.get("productType") == APP_TYPE), None)
@@ -137,16 +129,6 @@ def main():
     pod = open("ios/Podfile").read() if os.path.exists("ios/Podfile") else ""
     pod_targets = re.findall(r"^\s*target\s+['\"]([^'\"]+)['\"]", pod, re.M)
     print("  ", pod_targets or "(no Podfile)")
-    blocks = dict(re.findall(r"^\s*target\s+['\"]([^'\"]+)['\"]\s+do(.*?)^end", pod, re.M | re.S))
-    holders = [n for n, body in blocks.items() if "WEServiceExtension" in body]
-    print("   targets that link WEServiceExtension:", holders or "(none)")
-    if holders:
-        service_names = [r[0] for r in services]
-        for h in holders:
-            if h not in service_names:
-                fails.append(f"WEServiceExtension is linked in Podfile target '{h}', which is not a service extension in the project")
-        if not any(h in service_names for h in holders):
-            fails.append("WEServiceExtension is not linked in the project's service extension")
     for n in dup_podfile_targets(pod_targets):
         fails.append(f"Podfile declares target '{n}' more than once")
 

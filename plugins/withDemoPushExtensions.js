@@ -7,13 +7,14 @@
  *   nseName   target/folder name of the service extension   default "DemoNotificationService"
  *   ceName    target/folder name of the content extension   default "DemoNotificationContent"
  *   category  UNNotificationExtensionCategory of the content extension   default "DEMO_CATEGORY"
- *   appGroup  App Group written to both extensions' entitlements  default group.<bundle id>.demo
+ *   appGroup  App Group written to both extensions' entitlements  default group.<bundle id>.demo; false = none
+ *   nseBundleSuffix / ceBundleSuffix  bundle id suffix, default the target name (use it to reuse existing App IDs)
  *   disableCE set true to create only the service extension
  *   podfileTarget set true to also add an (empty) Podfile target block per extension, as vendor plugins
  *             that depend on pods do
  *
  * Use nseName "NotificationService" (and ceName "NotificationViewController") to reproduce a
- * same-name clash with webengage-expo-push's defaults.
+ * same-name clash with another push plugin's default names.
  */
 const fs = require('fs');
 const path = require('path');
@@ -70,7 +71,13 @@ const ceExtension = (category) => `	<dict>
 		<string>$(PRODUCT_MODULE_NAME).NotificationViewController</string>
 	</dict>`;
 
-const entitlements = (group) => `<?xml version="1.0" encoding="UTF-8"?>
+const entitlements = (group) => !group ? `<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+</dict>
+</plist>
+` : `<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
@@ -106,26 +113,32 @@ class NotificationService: UNNotificationServiceExtension {
 `;
 
 const ceSwift = `import UIKit
+import os.log
 import UserNotifications
 import UserNotificationsUI
 
-// Demo content extension: a single label, built in code (no storyboard).
+// Demo content extension: one label, built in code with frame layout (no storyboard, no Auto Layout).
+// The blue background makes it obvious whether the extension's view is on screen at all.
 class NotificationViewController: UIViewController, UNNotificationContentExtension {
     private let label = UILabel()
+    private let log = OSLog(subsystem: "com.webEngage.prodSwift.NotificationContent", category: "demo-ce")
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        let root = UIView(frame: CGRect(x: 0, y: 0, width: 320, height: 120))
+        root.backgroundColor = .systemBlue
+        label.frame = root.bounds.insetBy(dx: 16, dy: 8)
+        label.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-        ])
+        label.textColor = .white
+        label.text = "[demo-ce] loaded, waiting for the notification"
+        root.addSubview(label)
+        view = root
+        preferredContentSize = CGSize(width: 320, height: 120)
+        os_log("loadView", log: log, type: .default)
     }
 
     func didReceive(_ notification: UNNotification) {
+        os_log("didReceive", log: log, type: .default)
         label.text = "[demo-ce] " + notification.request.content.body
     }
 }
@@ -143,7 +156,7 @@ function writeFiles(iosPath, group, spec) {
   write(path.join(dir, `${spec.name}.entitlements`), entitlements(group));
 }
 
-function addTarget(xcodeProject, bundleId, spec) {
+function addTarget(xcodeProject, bundleId, teamId, spec) {
   // pbxTargetByName() only matches the quoted form that addTarget() stores
   if (xcodeProject.pbxTargetByName(spec.name) || xcodeProject.pbxTargetByName(`"${spec.name}"`)) return;
 
@@ -160,10 +173,12 @@ function addTarget(xcodeProject, bundleId, spec) {
   objects.PBXTargetDependency = objects.PBXTargetDependency || {};
   objects.PBXContainerItemProxy = objects.PBXContainerItemProxy || {};
 
-  const target = xcodeProject.addTarget(spec.name, 'app_extension', spec.name, `${bundleId}.${spec.name}`);
+  const target = xcodeProject.addTarget(spec.name, 'app_extension', spec.name, `${bundleId}.${spec.bundleSuffix || spec.name}`);
   xcodeProject.addBuildPhase([spec.swiftFile], 'PBXSourcesBuildPhase', 'Sources', target.uuid);
   xcodeProject.addBuildPhase([], 'PBXResourcesBuildPhase', 'Resources', target.uuid);
   xcodeProject.addBuildPhase([], 'PBXFrameworksBuildPhase', 'Frameworks', target.uuid);
+  // Link the system frameworks explicitly: Swift auto-linking did not link them into the extension binary.
+  (spec.frameworks || []).forEach((fw) => xcodeProject.addFramework(fw, { target: target.uuid }));
 
   const configs = xcodeProject.pbxXCBuildConfigurationSection();
   for (const key in configs) {
@@ -177,6 +192,7 @@ function addTarget(xcodeProject, bundleId, spec) {
       settings.CODE_SIGN_STYLE = 'Automatic';
       settings.MARKETING_VERSION = '1.0';
       settings.CURRENT_PROJECT_VERSION = '1';
+      if (teamId) settings.DEVELOPMENT_TEAM = teamId;
     }
   }
 }
@@ -185,11 +201,13 @@ module.exports = function withDemoPushExtensions(config, props = {}) {
   const bundleId = config.ios && config.ios.bundleIdentifier;
   if (!bundleId) throw new Error('[withDemoPushExtensions] ios.bundleIdentifier is required');
 
-  const group = props.appGroup || `group.${bundleId}.demo`;
+  const group = props.appGroup === false ? null : props.appGroup || `group.${bundleId}.demo`;
   const specs = [
     {
       name: props.nseName || 'DemoNotificationService',
       swiftFile: 'NotificationService.swift',
+      bundleSuffix: props.nseBundleSuffix,
+      frameworks: ['UserNotifications.framework'],
       swift: nseSwift,
       extension: nseExtension,
     },
@@ -197,7 +215,9 @@ module.exports = function withDemoPushExtensions(config, props = {}) {
   if (!props.disableCE) {
     specs.push({
       name: props.ceName || 'DemoNotificationContent',
-      swiftFile: 'NotificationViewController.swift',
+      swiftFile: 'DemoContentViewController.swift',
+      bundleSuffix: props.ceBundleSuffix,
+      frameworks: ['UserNotifications.framework', 'UserNotificationsUI.framework'],
       swift: ceSwift,
       extension: ceExtension(props.category || 'DEMO_CATEGORY'),
     });
@@ -212,7 +232,7 @@ module.exports = function withDemoPushExtensions(config, props = {}) {
         const podfile = path.join(iosPath, 'Podfile');
         let text = fs.readFileSync(podfile, 'utf8');
         specs.forEach((spec) => {
-          if (!text.includes(`target '${spec.name}'`)) text += `\ntarget '${spec.name}' do\nend\n`;
+          if (!text.includes(`target '${spec.name}'`)) text += `\ntarget '${spec.name}' do\n  use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']\nend\n`;
         });
         fs.writeFileSync(podfile, text);
       }
@@ -221,7 +241,7 @@ module.exports = function withDemoPushExtensions(config, props = {}) {
   ]);
 
   return withXcodeProject(config, (cfg) => {
-    specs.forEach((spec) => addTarget(cfg.modResults, bundleId, spec));
+    specs.forEach((spec) => addTarget(cfg.modResults, bundleId, config.ios && config.ios.appleTeamId, spec));
     return cfg;
   });
 };
